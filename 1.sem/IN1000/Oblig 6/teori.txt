@@ -1,0 +1,25 @@
+1. Hva er innkapsling?Hvorfor er det nyttig?
+- Det er en programmeringsteknikk, der en hindrer tilgang til et objekt. Fra objektet til andre klasser.
+  En skal altså kalle objektets metoder for å få tilgang til informasjonen. Det er altså
+  klassens grensesnitt.
+- Det er nyttig for å ha kontroll på objektene i et program, slik at data ikke blir lekket.
+  f.eks med klasser blir all informasjonom attributter og regler samlet ett sted,
+  som lokale variabler istedenfor globale variabler
+  siden dette fort kan føre til feil og et dårlig brukergrensenitt.
+  I tillegg er det nyttig med innkapsling når koden i en klasse ikke trenger detaljer i en annen klasse.
+  Ved å implementere innkapsling unngår man feil og endringer blir lettere å utføre.
+
+2. Hva er grensesnittet til en klasse? Hvordan skiller det seg fra implementasjonen av en klasse?
+- ut ifra klassedefinisjonen blir hvilke metoder som skal tilbys definert, altså grensesnittet.
+- grensesnittet er selve definisjonene av funksjonene, implementasjonen av klassen er på den andre
+  siden selve egeneksapene funksjonen får tildelt.
+
+3. Hva er en instansmetode (ofte kalt bare metode), og hvordan skiller metoder
+seg fra prosedyrene/funksjonene vi har jobbet med hittil?
+- En instansmetode er omtrent det samme som en prosedyre eller funksjon, altså noe en kan kalle
+  på med et eget grensesnitt der variabler kan være forskjellige fra metode til metode.
+  Metodene skiller seg fra funksjoner og prosedyrer ved at metoder alltid må kalles for et objekt,
+  derav bruker man dot-notasjon.
+
+
+SJEKK UT FORELESNINGSOPPTAK: TIM1 OG TIME2

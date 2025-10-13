@@ -1,0 +1,6 @@
+Skulderbredde 4
+halsvidde 3.2
+ermelengde 7.5
+benlengde 15
+midjelengde 10
+skjørtlengde 20
