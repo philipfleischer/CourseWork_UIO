@@ -1,0 +1,151 @@
+README – IN2140 Home Exam, Spring 2025
+
+Introduction:
+This project is our implementation of a reliable network system divided into four layers (L2: datalink, L3: network, L4: transport and L5: client). The goal has been to follow the assignment description and specifications as closely as possible, while documenting all assumptions and handling ambiguities.
+
+All code has been developed and tested on login.ifi.uio.no in accordance with the requirements.
+
+--------------------------------
+Structure and Implementation:
+--------------------------------
+
+Layer L2 – Datalink:
+
+Purpose: Provide reliable data transfer over UDP with basic header and checksum validation.
+
+Header format (8 bytes):
+- dst_addr (2 bytes)
+- len (2 bytes)
+- checksum (1 byte)
+- mbz (3 bytes – must be zero)
+
+Choices and assumptions:
+- Checksum is calculated using XOR over all bytes except the checksum itself.
+- l2sap_recvfrom_timeout() uses select() with support for L2_TIMEOUT.
+- Maximum payload is set to 1016 bytes (including 8-byte header).
+- peer_addr must be known during initialization. Server obtains it via the first recv.
+
+
+Layer L3 – Network:
+
+Purpose: Transparent forwarding of packets from L4 to L2.
+
+Choices:
+- No protocol header or processing – only “pass-through”.
+- L3HeaderSize = 0.
+- l3sap_sendto() and l3sap_recvfrom() forward directly to/from L2.
+
+Justification for separate layer:
+- Enables future support for routing, addressing, and fragmentation.
+- Provides a clear OSI structure.
+
+
+Layer L4 – Transport:
+
+Purpose: Implement reliable end-to-end transport with stop-and-wait protocol.
+
+Choices and assumptions:
+Design Decisions and Assumptions:
+1. Full-Duplex Support:
+	l4sap_send() can handle incoming DATA packets while waiting for an ACK.
+2. Buffered Reception:
+	One incoming DATA packet may be buffered if l4sap_recv() is not currently active.
+3. Deferred Copying:
+	If a DATA packet arrives during a send but cannot be copied (e.g., out_data == NULL), it is stored in recv_buffer for later retrieval by l4sap_recv().
+4. Blocking Behavior:
+	l4sap_recv() blocks indefinitely until a valid DATA or RESET packet is received. It ignores unrelated packets such as ACK.
+5. Sequence Numbers:
+	ACK is computed as (seqno + 1) % 2.
+6. Payload Truncation:
+	Packets larger than L4PayloadSize are truncated.
+8. Connection Teardown:
+	L4_RESET is sent three times during destroy() to ensure clean disconnection.
+9. Data Handling:
+	Incoming packets are either buffered internally or passed directly to Layer 5 (L5), depending on availability.
+10. Header Management:
+	L4 headers are dynamically allocated using malloc via get_l4header() and are always freed after use.
+11. Concurrent Handling:
+	Both l4sap_send() and l4sap_recv() are capable of processing unrelated packet types while performing their main operations (e.g., send can buffer incoming DATA).
+
+
+Layer L5 – Client (Maze Solver):
+
+Purpose: Solve a maze using BFS and send the solution to the server.
+
+Choices and implementation:
+- BFS is used instead of DFS to find the shortest path from start to finish.
+- mazeSolve() begins by initializing a linked list of nodes and performs BFS using a queue.
+- Each node holds a pointer to its parent to allow reconstruction of the solution once the goal is reached.
+- The solution is marked recursively using mark_maze() by following parent pointers from end to start.
+- A custom recv_buffer-inspired data structure is used to buffer and track visited positions.
+- All allocated nodes are stored in a chain for correct memory freeing via free_nodes().
+- If no solution is found: Error is written to stderr.
+
+
+--------------------------------
+Ambiguities and Assumptions:
+--------------------------------
+
+We have identified the following ambiguities in the assignment description:
+1. Multiple incoming DATA packets:
+	It is not specified how to handle multiple DATA packets arriving before recv() is called.
+	We chose to buffer one packet and drop subsequent ones until the first is retrieved.
+4. Destruction with NULL pointer:
+	The task does not specify how destroy() should behave with NULL.
+	We added a NULL check to avoid segmentation fault.
+
+--------------------------------
+L4 entity
+--------------------------------
+Explanation of the last four elements in the L4SAP struct:
+1. int reset_sent:
+    Used to keep track of the number of L4_RESET packets that have been sent,
+    to ensure that the peer is properly terminated.
+
+2. uint8_t recv_buffer[L4Framesize]:
+    This is a temporary buffer for a received DATA packet.
+    When a DATA packet arrives, but l4sap_recv() has not yet been
+    called, it is stored here so it can be returned when
+    the application calls recv().
+    The limitation is that there is only room for one buffered
+    packet, and additional packets are dropped.
+
+3. int recv_buffer_len:
+    Indicates how many bytes are stored in recv_buffer.
+    Used in l4sap_recv() to know how much data should be
+    copied out of the buffer and into the user’s buffer.
+
+4. bool has_buffered_data:
+    Indicates whether recv_buffer contains valid, unprocessed data.
+    Checked in l4sap_recv() to determine whether there is stored
+    DATA that can be returned immediately without having to wait.
+
+
+--------------------------------
+Compilation and Testing:
+--------------------------------
+Compilation is done using CMake and make.
+Tested and validated with Valgrind for memory errors.
+
+Examples:
+
+L2:
+Klient:
+valgrind --leak-check=full ./datalink-test-client 127.0.0.1 8080
+
+Server:
+./datalink-server 8080
+
+L4:
+valgrind --leak-check=full ./transport-test-client 127.0.0.1 8080
+
+Server:
+./transport-server 8080
+
+L5:
+valgrind --leak-check=full ./maze-client 127.0.0.1 8080 123
+valgrind --leak-check=full ./maze-plot 127.0.0.1 8080 123
+
+
+Server:
+./maze-server 8080

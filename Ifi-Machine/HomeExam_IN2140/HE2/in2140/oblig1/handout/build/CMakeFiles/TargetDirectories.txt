@@ -1,0 +1,7 @@
+/home/vegarvan/in2140/oblig1/handout/build/CMakeFiles/vowelshift.dir
+/home/vegarvan/in2140/oblig1/handout/build/CMakeFiles/stringops.dir
+/home/vegarvan/in2140/oblig1/handout/build/CMakeFiles/apple.dir
+/home/vegarvan/in2140/oblig1/handout/build/CMakeFiles/package.dir
+/home/vegarvan/in2140/oblig1/handout/build/CMakeFiles/package_source.dir
+/home/vegarvan/in2140/oblig1/handout/build/CMakeFiles/edit_cache.dir
+/home/vegarvan/in2140/oblig1/handout/build/CMakeFiles/rebuild_cache.dir
