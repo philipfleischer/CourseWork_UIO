@@ -1,0 +1,14 @@
+#Klassedefinisjon
+A) Linje 1
+#Opprettelse av nytt objekt
+B) Linje 19 og Linje 20
+#Definisjon av instansvariabel
+C) Linje 3, Linje 4 og Linje 5
+#Definisjon av instansmetode
+D) Linje 7, Linje 11 og Linje 15
+#Definisjon av konstruktør
+E) Linje 2
+#Kall på instansmetode
+F) Linje 21, 22, 25, 26, 27, 28, 31, 32, 33, 34
+#Argumenter
+G) Linje 2, 7, 11, 15, 19-22, 25-28, 31-34

@@ -1,0 +1,151 @@
+Dette er en ganske omfattende oppgave, men med god organisering kan dere definitivt klare det på én uke. Her er en konkret plan for parallellarbeid, som inkluderer oppgavefordeling, fremgangsmåte, og struktur for samarbeid:
+(For å se arkitekturen og lagene, last ned mermaid og sjekk preview for å få opp bildet.)
+⸻
+
+✅ Overordnet strategi for 1 ukes gjennomføring
+	•	Dag 1-4: Jobb parallelt med førsteversjoner av L2, L4 og Maze-løsningsalgoritmen. Bruk -p 0.0 på serverne for å slippe rammetap.
+	•	Dag 5-7: Integrering og testing av samspillet mellom lagene. Få testene til å fungere
+
+⸻
+
+👨‍👩‍👦 Roller og parallell fordeling (starter i dag)
+
+Ørjan (L2-ansvarlig)	Implementere rammelaget (rammer, header, checksum, UDP-transport)	l2sap.c	datalink-text-server/client
+Philip (L4-ansvarlig)	Implementere pakkelaget (stop-and-wait, pakkeheader)	l4sap.c	transport-test-server/client
+Vegard (Maze-ansvarlig)	Implementere labyrintløsning, maze-serialisering og protokoll mot server	maze.c	maze-server/client
+
+
+
+⸻
+
+🛠️ Konkrete mål for hver person i starten
+
+👤 Ørjan - L2-utvikler
+	•	Implementer:
+	•	l2sap_create
+	•	l2sap_sendto - lager L2Header, sjekker størrelse, checksum
+	•	l2sap_recvfrom_timeout - leser header, sjekker checksum, returnerer payload
+	•	l2sap_destroy
+	•	Test: Bruk datalink-text-client og datalink-text-server -p 0.0.
+
+👤 Philip - L4-utvikler
+	•	Implementer:
+	•	l4sap_create - kobler til L2
+	•	l4sap_send - lager L4Header, bruker l2sap_sendto, implementer seqno/ackno
+	•	l4sap_recv - venter på data, sender ACK
+	•	l4sap_destroy
+	•	Start med kun enveis-kommunikasjon uten retransmisjon (med -p 0.0)
+	•	Test: med transport-test-server og transport-test-client.
+
+👤 Vegard - Maze-utvikler
+	•	Implementer:
+	•	Parser for Maze-header
+	•	Maze-løsningsalgoritme (DFS/BFS)
+	•	Serialisering av løsningslabyrint
+	•	Kommunikasjon: send “MAZE ”, mottar Maze, løser, sender, sender “QUIT”
+	•	Test: Bruk maze-server -p 0.0 og maze-client
+
+⸻
+
+🧑‍💻 Felles samkjøring etter 1-4 dager
+
+Når L2 og L4 fungerer:
+	•	Philip kan bytte fra dummy L4 til ekte L4
+	•	Philip og Vegard jobber sammen for å koble maze over L4
+	•	Ørjan utvider L2 med checksum-sjekk og drop-logikk (uten -p 0.0)
+	•	Philip legger inn retransmisjon og timeout (stop-and-wait)
+
+⸻
+
+
+📄 Dokumentasjon (senest siste dag)
+	•	Lag en README som forklarer:
+	•	Hvordan man kompilerer og kjører
+	•	Hvordan L2, L4 og maze fungerer
+	•	Eventuelle forenklinger/antagelser
+
+⸻
+
+
+
+
+
+
+
+
+TODO-Liste:
+
+Her er en konkret TODO-liste for dere, delt opp i de forskjellige lagene (L2, L4, L5) for å sikre at dere kan jobbe parallelt og deretter koble sammen arbeidet deres.
+
+Generelle Steg:
+	1.	Del opp oppgaven: Diskuter hvordan dere vil fordele ansvaret for hvert lag (L2, L4, L5).
+	2.	Planlegg møter: Bestem et møtetidspunkt etter hver stor milepæl, for å integrere delene deres.
+
+⸻
+
+L2 - Datalinklag (L2)
+
+Hovedansvar: Håndtere rammesending og mottak med riktig header og kontrollsum.
+	1.	Initialisering av L2 (1. dag):
+	•	Implementer l2sap_create og l2sap_destroy (opprett og fjern L2-enheten).
+	•	Sørg for at L2-enheten kan sende UDP-pakker til L2-peer (det vil emulere L2-rammer).
+	2.	Rammeheaderstruktur (2. dag):
+	•	Implementer rammeheaderen som beskrevet i oppgavebeskrivelsen (med dst_addr, len, checksum, etc.).
+	•	Sørg for at payload-størrelsen blir kontrollert og at for store pakker blir forkastet.
+	•	Sørg for at L2-enheten utfører XOR-sjekksum-kontroll for rammene.
+	3.	Sende og motta rammer (3. dag):
+	•	Implementer funksjonene for sending og mottak: l2sap_sendto og l2sap_recvfrom_timeout.
+	•	Sørg for at rammene håndteres riktig i henhold til kontrollsjekken (mottak av ramme og kontrollsum).
+	4.	Test L2 (4. dag):
+	•	Test L2 ved å bruke datalink-test-client.c og serveren datalink-test-server.
+
+⸻
+
+L4 - Transportlag (L4)
+
+Hovedansvar: Implementere stop-and-wait protokoll og håndtere sending og mottak av pakker.
+	1.	Initialisering av L4 (1. dag):
+	•	Implementer l4sap_create og l4sap_destroy (opprett og fjern L4-enheten).
+	2.	L4 Headerstruktur (2. dag):
+	•	Implementer L4-headeren (type, seqno, ackno, mbz).
+	•	Definer L4-pakkene: L4_DATA, L4_ACK, og L4_RESET.
+	3.	Stop-and-Wait Protokoll (3. dag):
+	•	Implementer l4sap_send og l4sap_recv for å håndtere pakker med stop-and-wait-protokollen.
+	•	Sørg for at sekvensnummer og bekreftelsesnummer brukes riktig for å sikre korrekt kommunikasjon.
+	4.	Test L4 (4. dag):
+	•	Test L4 ved å bruke transport-test-client.c og serveren transport-test-server.
+
+⸻
+
+L5 - Labyrintklient (L5)
+
+Hovedansvar: Implementere labyrintklienten som kontakter serveren for labyrinten, løser den og returnerer løsningen.
+	1.	Klientstruktur (1. dag):
+	•	Implementer labyrintklienten (maze-client.c), som sender en forespørsel om labyrint til serveren.
+	•	Implementer parsing av responsen (Labyrintstruktur med edgeLen, size, startX, startY, endX, endY og maze).
+	2.	Labyrintløsning (2. dag):
+	•	Implementer algoritme for å løse labyrinten fra startX, startY til endX, endY basert på labyrintens bitverdier (rettigheter, opp, ned, venstre).
+	3.	Returner løsning (3. dag):
+	•	Implementer funksjonaliteten for å sende løsningen tilbake til serveren etter at labyrinten er løst.
+	4.	Test L5 (4. dag):
+	•	Test L5 ved å bruke maze-client.c og serveren maze-server.
+
+⸻
+
+Integrasjon og Testing (5. dag):
+	1.	Integrasjon (5. dag):
+	•	Koble L2, L4 og L5 sammen og test kommunikasjonen mellom lagene.
+	•	Verifiser at rammene sendes riktig, at pakker blir behandlet med stop-and-wait-protokollen, og at labyrinten løses og returneres til serveren.
+	2.	Feilsøking (5. dag):
+	•	Test hele systemet med den komplette labyrinten og fikse eventuelle feil som oppstår under integrasjonen.
+
+⸻
+
+Sluttføring og Dokumentasjon (6. dag):
+	1.	Siste testing (6. dag):
+	•	Test hele systemet grundig, sørg for at ingen funksjoner bryter sammen og at systemet fungerer som beskrevet i oppgavebeskrivelsen.
+	2.	Dokumentasjon (6. dag):
+	•	Dokumenter koden deres og lag en beskrivelse av hvordan systemet fungerer (for eksempel hvordan lagene er koblet sammen og hvordan de fungerer).
+
+⸻
+
