@@ -6,7 +6,7 @@ Code for Android Basics with Compose Practice Set.
 
 You need to know:
 
-- How to create Composable functions
+- How to create Composable functions.
 - How to use architecture components including ViewModel.
 - How to use [Retrofit](https://square.github.io/retrofit/) to retrieve data from the internet.
 - How to use [Coil](https://coil-kt.github.io/coil/) to load images.
