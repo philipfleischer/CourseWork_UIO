@@ -1,3 +1,11 @@
+# Dette programmet konverterer temperaturer mellom Fahrenheit og Celsius.
+# Først bes brukeren om å skrive inn en temperatur i Fahrenheit og skriver
+# ut tilsvarende verdi i Celsius. Deretter kan brukeren skrive inn en vilkårlig
+# temperatur og velge enhet (C eller F), og programmet konverterer temperaturen
+# til den andre enheten. Programmet inneholder også sjekk for ugyldig input slik
+# at brukeren må skrive inn gyldige tall og riktige enheter.
+
+
 def fahr_til_cel(fahr: float) -> float:
     return (fahr - 32) * 5 / 9
 
