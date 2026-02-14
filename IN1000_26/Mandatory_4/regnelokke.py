@@ -1,3 +1,6 @@
+# Programmet leser inn heltall fra brukeren helt til brukeren skriver 0. Tallene lagres i en liste. Etterpå skriver programmet ut alle tallene, regner ut summen uten sum(), og finner minste og største tall uten min()/max(). Dette trener på while-løkke (ukjent antall input) og for-løkke (gå gjennom samling).
+
+
 def funk():
     # Del 1
     tall = 1
@@ -5,7 +8,8 @@ def funk():
     while tall != 0:
         tall = int(input("Tall: "))
         # Del 2
-        samling.append(tall)
+        if tall != 0:
+            samling.append(tall)
 
     # Del 3
     for t in samling:

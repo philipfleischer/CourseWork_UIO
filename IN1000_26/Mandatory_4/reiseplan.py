@@ -1,3 +1,10 @@
+# Programmet lar brukeren registrere reiseplaner (destinasjon, klær, dato). Reisene lagres i en dictionary der nøkkel er destinasjon, og verdien er en tuple: (klær, dato). Brukeren kan:
+# - se en oversikt over alle reiser
+# - hente ut én del (klær eller dato) for en valgt reise
+# - endre klær eller dato for en eksisterende reise
+# Dette trener på samlinger (dictionary + tuple), indeksering, og input-validering.
+
+
 def reise_info():
     navn = input("Skriv inn destinasjon: ")
     klear = input("Skriv inn klær: ")
@@ -62,8 +69,9 @@ def endre_reise(dictionary):
     if attributt == "klær":
         klaer_ny = input("Skriv inn klær: ")
         dictionary[navn] = (klaer_ny, dato_old)
-    dato_ny = input("Skriv inn dato: ")
-    dictionary[navn] = (klaer_old, dato_ny)
+    else:
+        dato_ny = input("Skriv inn dato: ")
+        dictionary[navn] = (klaer_old, dato_ny)
 
     print("Oversikt:")
     print_dict(dictionary)
