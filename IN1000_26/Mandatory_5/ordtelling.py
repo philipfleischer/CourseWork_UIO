@@ -1,3 +1,5 @@
+# Leser inn en setning, teller totalt antall ord, antall forekomster per ord, og skriver også hvor mange bokstaver hvert ord har.
+
 def ant_bokstaver(ord):
     return len(ord)
 

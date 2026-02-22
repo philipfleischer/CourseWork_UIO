@@ -1,3 +1,6 @@
+# En liten “verktøykasse” der brukeren først velger verktøy (utregning eller konvertering), og deretter velger konkret beregning som utføres basert på input.
+
+
 def toolcase1(tall1, tall2):
     print("\nVelg beregning:")
     print("1) Addisjon")

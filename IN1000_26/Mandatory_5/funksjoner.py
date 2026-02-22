@@ -1,3 +1,5 @@
+# Viser enkel funksjonsbruk: legger sammen to tall, og teller hvor mange ganger en valgt bokstav forekommer i en tekst brukeren skriver inn.
+
 def adder(tall1, tall2):
     return tall1 + tall2
 

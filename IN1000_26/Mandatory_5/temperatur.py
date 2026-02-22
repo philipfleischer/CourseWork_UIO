@@ -1,3 +1,5 @@
+# Leser temperaturdata fra CSV, oppdaterer månedlige maksrekorder basert på nye målinger, og skriver oppdaterte rekorder til en ny CSV-fil.
+
 def max_month(filnavn):
     ordbok = {}
     with open(filnavn, 'r') as fil:
