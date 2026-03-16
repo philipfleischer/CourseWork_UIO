@@ -1,0 +1,30 @@
+Oppgave 3
+
+1. Hva er innkapsling? Hvorfor er det nyttig?
+
+Innkapsling betyr at man samler data og funksjonalitet som hører sammen i en egen enhet, for eksempel i en klasse. Klassen tar ansvar for å håndtere sin egen informasjon og oppførsel.
+
+For eksempel i et program som simulerer fotballkamper kan man ha egne klasser for sesong, runde og kamp. Hver klasse håndterer sin del av programmet, i stedet for at all logikk ligger samlet ett sted.
+
+Dette er nyttig fordi koden blir mer oversiktlig og lettere å forstå. Det gjør også programmet enklere å vedlikeholde og videreutvikle, siden man kan endre én del av programmet uten å påvirke resten i like stor grad.
+
+2. Hva er grensesnittet til en klasse? Hvordan skiller det seg fra implementasjonen av en klasse?
+
+Grensesnittet til en klasse beskriver hvordan klassen kan brukes fra utsiden. Det vil si hvilke metoder som finnes, hvilke argumenter de tar, og hva de returnerer.
+
+For eksempel kan en klasse Kamp ha en metode simuler() som lar oss simulere en fotballkamp. Dette er en del av grensesnittet fordi det viser hva objektet kan gjøre.
+
+Implementasjonen av en klasse er hvordan metodene faktisk er laget internt i klassen. Det vil si koden som utfører arbeidet når metodene blir kalt.
+
+Forskjellen er altså at grensesnittet beskriver HVA klassen kan gjøre, mens implementasjonen beskriver HVORDAN det gjøres.
+
+
+3. Hva er en instansmetode (ofte bare kalt en metode)? Hvordan skiller metoder seg fra prosedyrer/funksjonene vi har jobbet med hittil?
+
+En instansmetode er en funksjon som tilhører en klasse og som opererer på et objekt (en instans) av klassen. Metoden kan bruke og endre informasjon som er lagret i objektet.
+
+Forskjellen fra funksjoner vi har brukt tidligere er at en instansmetode alltid er knyttet til et objekt og vanligvis kalles på formen: objekt.metode()
+
+Vanlige funksjoner derimot står alene og kalles direkte, for eksempel: funksjon()
+
+Instansmetoder bruker altså til å beskrive oppførselen til objeter i objektorientert programmering.
