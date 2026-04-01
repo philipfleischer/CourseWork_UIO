@@ -1,4 +1,3 @@
-# Dette er versjonen vi fikk, som ikke skal endres:
 class Dato:
     def __init__(self, ddmmåååå):
         self.endre_til(ddmmåååå)
