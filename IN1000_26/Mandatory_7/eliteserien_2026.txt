@@ -1,0 +1,16 @@
+Bodø/Glimt, 1739, 2.83
+Viking, 1603, 2.57
+Brann, 1534, 1.83
+Tromsø, 1482, 1.67
+Molde, 1466, 1.53
+Rosenborg, 1458, 1.50
+Sandefjord, 1436, 1.83
+Fredrikstad, 1432, 1.27
+Sarpsborg 08, 1413, 1.60
+HamKam, 1394, 1.40
+Vålerenga, 1384, 1.63
+KFUM Oslo, 1382, 1.40
+Kristiansund, 1340, 1.23
+Lillestrøm, 1335, 1.23
+Start, 1294, 1.23
+Aalesund, 1229, 0.73

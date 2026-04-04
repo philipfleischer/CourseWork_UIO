@@ -1,6 +1,7 @@
 from oblig7 import Sesong
 
 
+
 def main():
     sesong = Sesong()
     sesong.les_lag_fra_fil("eliteserien_2026.txt")

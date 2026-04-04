@@ -17,7 +17,7 @@ class Spillkort:
 class Kortstokk:
     def __init__(self):
         self._kort: list = []
-        for symbol in ["herter", "kløver", "spar", "ruter"]:
+        for symbol in ["hjerter", "kløver", "spar", "ruter"]:
             for verdi in [2, 3, 4, 5, 6, 7, 8, 9, 10]:
                 nytt_kort = Spillkort(symbol, verdi)
                 nytt_kort.kortstokk = self  # Hvorfor = self?

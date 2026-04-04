@@ -1,5 +1,5 @@
 class Dato:
-    def __init__(self, ddmmåååå):
+    def __init__(self, ddmmåååå: str):
         self.endre_til(ddmmåååå)
 
     def hent_dag(self):
@@ -50,26 +50,52 @@ class Dato:
 
 
 class Lag:
-    pass
+    def __init__(self, navn: str, elo: int, mål: float):
+        self.navn = navn
+        self.elo = elo
+        self.mål = mål
+
+    def __str__(self):
+        return f"Navn: {self.navn}. Elo: {self.elo}. Antall mål: {self.mål}"
 
 
 class Kamp:
+    def __init__(self, hjemme: str, borte: str):
+        self.hjemmelag = hjemme
+        self.bortelag = borte
+
     def simuler(self):
-        print("Spilte kampen mellom hjemmelaget og bortelaget!")
+        print(f"Spilte kampen mellom {self.hjemmelag[0]} og {self.bortelag[0]} : {self.hjemmelag[2]} - {self.bortelag[2]}")
+
 
 
 class Runde:
+    def __init__(self, sesong: str):
+        self.sesong = sesong
+        self._kamper = []
+
     def __iter__(self):
         for _ in range(8):
             yield Kamp()
 
     def legg_til(self, hjemmelag_navn, bortelag_navn):
-        print(f"La til {hjemmelag_navn} - {bortelag_navn} i Runde-objektet!")
+        #print(f"La til {hjemmelag_navn} - {bortelag_navn} i Runde-objektet!")
+        pass
 
 
 class Sesong:
+    def __init__(self):
+        self._lagliste = []
+
     def les_lag_fra_fil(self, filnavn):
-        print(f"Leste lag fra filen {filnavn}!")
+        with open(filnavn, "r", encoding="utf-8") as f:
+            data = f.read().split(",")
+            lagnavn = data[0]
+            elo = data[1]
+            mål = data[2]
+            lag = Lag(lagnavn, elo, mål)
+            self._lagliste.append(lag)
+
 
     def runde(self, nummer):
-        return Runde()
+        return Runde(nummer)
