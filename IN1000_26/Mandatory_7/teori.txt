@@ -1,0 +1,5 @@
+Oppgave 3b)
+En fordel ved å ikke lese inn filen i konstruktøren er at vi får mer fleksibilitet. Da kan vi først opprette et Sesong-objekt, og deretter selv bestemme om vi vil lese inn en fil. Dette gjør klassen enklere å teste, siden vi kan lage et Sesong-objekt uten å være avhengig av at en fil finnes akkurat da. I tillegg blir ansvaret tydeligere fordelt, siden konstruktøren lager objektet, mens metoden les_lag_fra_fil fyller det med data.
+
+Oppgave 3c)
+En annen naturlig type for parameteren til metoden runde ville vært str, for eksempel "1" i stedet for 1. Forskjellen ville vært at rundenummeret da behandles som tekst i stedet for tall. Det ville fungert fint dersom vi bare skal bruke nummeret som en nøkkel i en ordbok, men int er mer naturlig fordi et rundenummer egentlig er et tall. Med int blir det også enklere dersom vi senere vil sammenligne runder, sortere dem eller bruke dem i løkker.

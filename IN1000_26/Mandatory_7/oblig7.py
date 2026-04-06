@@ -56,46 +56,56 @@ class Lag:
         self.mål = mål
 
     def __str__(self):
-        return f"Navn: {self.navn}. Elo: {self.elo}. Antall mål: {self.mål}"
+        return self.navn
 
 
 class Kamp:
-    def __init__(self, hjemme: str, borte: str):
-        self.hjemmelag = hjemme
-        self.bortelag = borte
+    def __init__(self, hjemme: Lag, borte: Lag):
+        self.hjemme = hjemme
+        self.borte = borte
+        self.hmål = None
+        self.bmål = None
 
     def simuler(self):
-        print(f"Spilte kampen mellom {self.hjemmelag[0]} og {self.bortelag[0]} : {self.hjemmelag[2]} - {self.bortelag[2]}")
+        self.hmål = random.randint(0, 9)
+        self.bmål = random.randint(0, 9)
 
+    def __str__(self):
+        if self.hmål is None or self.bmål is None:
+            return f"{self.hjemme} - {self.borte}"
+        return f"{self.hjemme} - {self.borte} {self.hmål} - {self.bmål}"
 
 
 class Runde:
-    def __init__(self, sesong: str):
+    def __init__(self, sesong):
         self.sesong = sesong
         self._kamper = []
 
-    def __iter__(self):
-        for _ in range(8):
-            yield Kamp()
-
     def legg_til(self, hjemmelag_navn, bortelag_navn):
-        #print(f"La til {hjemmelag_navn} - {bortelag_navn} i Runde-objektet!")
-        pass
+        hjemmelag = self.sesong._lag[hjemmelag_navn]
+        bortelag = self.sesong._lag[bortelag_navn]
+        kamp = Kamp(hjemmelag, bortelag)
+        self._kamper.append(kamp)
+
+    def __iter__(self):
+        return iter(self._kamper)
 
 
 class Sesong:
     def __init__(self):
-        self._lagliste = []
+        self._lag = {}
+        self._runder = {}
 
     def les_lag_fra_fil(self, filnavn):
-        with open(filnavn, "r", encoding="utf-8") as f:
-            data = f.read().split(",")
-            lagnavn = data[0]
-            elo = data[1]
-            mål = data[2]
-            lag = Lag(lagnavn, elo, mål)
-            self._lagliste.append(lag)
-
+        with open(filnavn, "r", encoding="utf-8") as fil:
+            for linje in fil:
+                linje = linje.strip()
+                if linje == "":
+                    continue
+                navn, elo, mål = linje.split(", ")
+                self._lag[navn] = Lag(navn, int(elo), float(mål))
 
     def runde(self, nummer):
-        return Runde(nummer)
+        if nummer not in self._runder:
+            self._runder[nummer] = Runde(self)
+        return self._runder[nummer]

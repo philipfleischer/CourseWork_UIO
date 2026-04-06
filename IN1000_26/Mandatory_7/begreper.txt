@@ -1,0 +1,29 @@
+A)
+Klassedefinisjon på linje 1.
+
+B)
+Definisjon av instansvariabel på linje: 3, 4, 5
+
+C)
+Definisjon av instansmetode på linje: 14
+
+D)
+Definisjon av konstruktøren på linje: 2
+
+Illustrasjonseksempel:
+class Menneske: # Linje 1
+    def __init__(self, navn, hoeyde, vekt): # Linje 2
+        self._navn = navn   # Linje 3
+        self._hoyde = hoyde # Linje 4
+        self._vekt = vekt   # Linje 5
+
+    def spiser(self, mat, antKalorier):
+        print(self._navn + " spiser " + mat + ".")
+        self._vekt += antKalorier / 8000
+
+    def sover(self, timer):
+        print(self._navn + " sover " + str(timer) + " timer.")
+        self._vekt -= (timer * 75) / 8000
+
+    def veie(self): # Linje 14
+        print(self._navn + " veier " + str(self._vekt) + " kg.")
