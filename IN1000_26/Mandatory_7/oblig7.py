@@ -1,3 +1,4 @@
+import random
 class Dato:
     def __init__(self, ddmmåååå: str):
         self.endre_til(ddmmåååå)

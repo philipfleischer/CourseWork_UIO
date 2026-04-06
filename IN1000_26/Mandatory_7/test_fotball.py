@@ -1,5 +1,5 @@
 from oblig7 import Sesong
-
+import random
 
 def main():
     sesong = Sesong()
