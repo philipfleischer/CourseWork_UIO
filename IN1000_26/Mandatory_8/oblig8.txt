@@ -550,4 +550,23 @@ lagKalender2023()
 ------------------ Oppgave 4 ------------------
 
 
+class Emne:
+
+    def __init__(self, emnekode, navn, høst, vår):
+        self.emnekode = emnekode
+        self.navn = navn
+        self.høst = høst
+        self.vår = vår
+
+    def __str__(self):
+        sem = ""
+        if self.høst and self.vår:
+            sem = "høst og vår"
+        elif self.høst:
+            sem = "høst"
+        elif self.vår:
+            sem = "vår"
+
+        return f"{self.emnekode}: {self.navn} ({sem})"
+
 ------------------ Oppgave 5 ------------------
