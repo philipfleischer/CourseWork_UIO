@@ -500,6 +500,51 @@ lagKalender2023()
 
 
 Oppgave 3C: Kalendere for flere år
+I et år er det 365 dager, bortsett fra i skuddår som har 29. februar (29.2) i tillegg. Så et skuddår har 366 dager. Skriv en funksjon som returnerer ei ordbok med kalendere for årene fra og med 2023 til og med 2041. En kalender er en liste med dato-objekter. I tillegg til ordboken dageriMnd har du en global liste over skuddår i perioden:
+
+skuddår = [2024, 2028, 2032, 2036, 2040]
+dageriMnd = { 1:31, 2:28, 3:31, 4:30, 5:31, 6:30, 7:31, 8:31, 9:30, 10:31, 11:30, 12:31 }
+
+Ordaboken som returneres skal ha årstallet som nøkkel, og innholdsverdien skal være kalenderen (liste av datoobjekter) for det året.
+
+Skriv funksjonen lagKalender2023_2040 her:
+
+Svar ->
+
+def lagKalender2023_2040():
+    kalender = []
+    for key, value in dageriMnd.items():
+        kalender.extend(kalenderHjelper(key, value))
+
+    return kalender
+
+def kalenderHjelper(mnd, dager):
+    liste = []
+    current_aar = 2023
+    for dag in range(dager):
+        liste.append(Dato(dag,mnd,current_aar))
+
+    if mnd == 2 and current_aar in skuddår:
+        liste.append(Dato(29,mnd,current_aar))
+
+    current_aar += 1
+
+    return liste
+
+def main():
+    antall_aar = 2040-2023
+    kalender = []
+    for i in range(antall_aar+1):
+        kalender = lagKalender2023_2040()
+
+    print(kalender)
+
+if __name__ == "__main__":
+    main()
+
+lagKalender2023()
+
+
 
 
 ------------------ Oppgave 4 ------------------
