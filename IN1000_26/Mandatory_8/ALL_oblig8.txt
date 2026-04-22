@@ -1,0 +1,720 @@
+------------------ Oppgave 1 ------------------
+
+
+Oppgave 1A: Tilordining
+- Hva er verdien til variabelen tall etter følgende kode er utført?
+
+a)
+tall = 4 + 3 * 2
+tall = tall + 3
+
+Svar -> 13
+
+
+
+Oppgave 1B: Uttrykk
+- Hva er verdien til variabelen tall etter følgende kode er utført?
+
+b)
+tall = (4 + 3) * 2
+tall = tall + 3
+
+Svar -> 17
+
+
+
+Oppgave 1C: Beslutninger
+- Hvilken verdi blir skrevet ut her?
+
+c)
+null = 0
+en = 1
+to = 2
+a = 0
+if (null+1 > to) and (null < en):
+    a = to * null
+elif (null+1 > to) or (en < en):
+    a = 3
+else:
+    a = en + 4
+tall = a + 2
+print(tall)
+
+Svar -> 7
+
+
+
+Oppgave 1D: Løkke
+- Hvilken verdi blir skrevet ut her?
+
+d)
+i = 0
+tall = 1
+while i < 4:
+    tall = tall * 2
+    i = i + 1
+print(tall)
+
+Svar -> 16
+
+
+
+Oppgave 1E: Enda en løkke
+- Hvilken verdi blir skrevet ut her?
+
+e)
+i = 0
+tall = 1
+while i < 99:
+    tall = tall * 2
+    i = i + 1
+print(i)
+
+Svar -> 99
+
+
+
+Oppgave 1F: This is your løkky day
+- Hvilken verdi blir skrevet ut her?
+
+f)
+tall = [0, 1, 3, 5, 7, 9]
+sum2 = 0
+for i in range(len(tall)):
+    if tall[i] < 6:
+        sum2 = sum2 + tall[i]
+    else:
+        sum2 = sum2 + tall[1]
+print(sum2)
+
+Svar -> 11
+
+
+
+Oppgave 1G: Parameteroverføring
+- Hvilken verdi blir skrevet ut her?
+
+g)
+def null_ut1(liste):
+    ny_liste = []
+    for i in liste:
+        ny_liste.append(0)
+    liste = ny_liste
+
+terningkast = [1,2,3,4,5,6]
+
+null_ut1(terningkast)
+print(terningkast[2])
+
+Svar -> 3
+
+
+Oppgave 1H: Mer parameteroverføring
+- Hvilken verdi blir skrevet ut her?
+
+h)
+def null_ut2(liste):
+    ny_liste = []
+    for i in range(len(liste)):
+        liste[i] = 0
+
+terningkast = [1,2,3,4,5,6]
+
+null_ut2(terningkast)
+print(terningkast[3])
+
+Svar -> 0
+
+
+
+Oppgave 1I: Dobling
+- Hvilken verdi blir skrevet ut her?
+
+i)
+def doble(a):
+    aa = a + a
+    return aa
+
+svarA = doble(3)
+svarB = doble("abc")
+print(str(svarA)+str(svarB))
+
+Svar -> 6abcabc
+
+
+Oppgave 1J: Referanser
+- Hvilken verdi blir skrevet ut her?
+
+j)
+tall = [0,1,3,5,7,9]
+liste = tall
+liste.pop(2)
+print(tall[2])
+
+Svar -> 5
+
+
+
+Oppgave 1K: Iterering
+- Hvilken verdi blir skrevet ut her?
+
+k)
+heltall = 1
+for tegn in "210202021122212":
+    heltall = heltall * int(tegn)
+print(heltall)
+
+Svar -> 0
+
+------------------ Oppgave 2 ------------------
+
+
+Oppgave 2A: Prosedyre
+Skriv en prosedyre 'godkjent' som sjekker om en student kan fremstille seg til eksamen i IN1000. Maks. poeng for obligene i IN1000 representerer vi i denne lista: [3,5,5,5,5,6,1,1]. Maks poeng er 3 for oblig 1, 5 for oblig2, osv. På de første 6 obligene kan poengene variere fra 0 til maks, men for å få godkjent de første seks må summen være minst 19 (maks sum er 29). På de to siste gis 1 for godkjent og 0 for ikke godkjent. For at det obligatoriske arbeidet skal være godkjent må summen av poengene på oblig 1-6 være minst 19, og oblig 7 og 8 må begge ha 1 poeng. 'godkjent' tar poenglista som eneste parameter og skal skrive ut "Obligkravet er oppfylt" om obligkravet er godkjent. Hvis det ikke er godkjent, skal prosedyren skrive ut alle kravene som ikke er ok. De tre kravene er altså:
+- minst 19 poeng på oblig 1-6
+- mer enn 0 poeng på oblig 7
+- mer enn 0 poeng på oblig 8
+Skriv prosedyren godkjent her:
+
+def godkjent(poengliste):
+    sum_foerste_seks = sum(poengliste[0:6])
+
+    if sum_foerste_seks >= 19 and poengliste[6] > 0 and poengliste[7] > 0:
+        print("Obligkravet er oppfylt")
+    else:
+        if sum_foerste_seks < 19:
+            print("Mindre enn 19 poeng på oblig 1-6")
+        if poengliste[6] == 0:
+            print("Ikke godkjent oblig 7")
+        if poengliste[7] == 0:
+            print("Ikke godkjent oblig 8")
+
+def main():
+    poengliste = [3,5,5,5,5,6,1,1]
+    godkjent(poengliste)
+
+if __name__ == "__main__":
+    main()
+
+
+
+Oppgave 2B: Funksjon
+Skriv en prosedyre 'godkjent' som sjekker om en student kan fremstille seg til eksamen i IN1000. Maks. poeng for obligene i IN1000 representerer vi i denne lista: [3,5,5,5,5,6,1,1]. Maks poeng er 3 for oblig 1, 5 for oblig2, osv. På de første 6 obligene kan poengene variere fra 0 til maks, men for å få godkjent de første seks må summen være minst 19 (maks sum er 29). På de to siste gis 1 for godkjent og 0 for ikke godkjent. For at det obligatoriske arbeidet skal være godkjent må summen av poengene på oblig 1-6 være minst 19, og oblig 7 og 8 må begge ha 1 poeng. 'godkjent' tar poenglista som eneste parameter og returnerer True hvis poengkravet for å gå opp til eksamen er oppfylt, False ellers.
+
+def godkjent(poengliste):
+    sum_foerste_seks = sum(poengliste[0:6])
+
+    if sum_foerste_seks >= 19 and poengliste[6] > 0 and poengliste[7] > 0:
+        return True
+    else:
+        return False
+
+def main():
+    poengliste = [3,5,5,5,5,6,1,1]
+    ta_eksamen = godkjent(poengliste)
+    print(ta_eksamen)
+
+if __name__ == "__main__":
+    main()
+
+
+
+Oppgave 2C: Grensesnitt
+- Gitt klassen:
+
+class Student:
+    def __init__(self, obliger):
+        # parameteren obliger er ei liste med poeng (heltall)
+        # variabler som starter med _ er utilgjengelig utenfor klassen
+        self._obliger = obliger
+
+    def antall_obliger(self):
+        return len(self._obliger)
+
+    def oblig(self, nr):
+        return self._obliger[nr-1]
+
+Hva (hvilke instansvariabler og metoder) er med i grensesnittet til klassen Student?
+
+Svar ->
+antall_obliger()
+oblig()
+
+
+
+Oppgave 2D: Funksjon med hjemmelaget objekt
+Skriv funksjonen 'obliger_godkjent' som skal beregne akkurat det samme som funksjonen godkjent i oppgave 2B. Eneste forskjellen er at parameteren til funksjonen nå er et studentobjekt av klassen Student. Merk at funksjonen skal skrives i det globale skopet og at de dermed ikke har tilgang til instansvariabelen self._obliger.
+
+Svar ->
+
+class Student:
+    def __init__(self, obliger):
+        # parameteren obliger er ei liste med poeng (heltall)
+        # variabler som starter med _ er utilgjengelig utenfor klassen
+        self._obliger = obliger
+
+    def antall_obliger(self):
+        return len(self._obliger)
+
+    def oblig(self, nr):
+        return self._obliger[nr-1]
+
+def obliger_godkjent(student):
+    if student.antall_obliger() != 8:
+        return False
+
+    sum_foerste_seks = 0
+    for nr in range(1, 7):
+        sum_foerste_seks += student.oblig(nr)
+
+    if sum_foerste_seks >= 19 and student.oblig(7) > 0 and student.oblig(8) > 0:
+        return True
+    else:
+        return False
+
+
+
+Oppgave 2E: Metode
+Skriv metoden 'obliger_godkjent' som skal beregne akkurat det samme som funksjonen 'obliger_godkjent' i forrige oppgave. Eneste forskjell er at metoden skal være med i grensesnittet til klassen Student. Du trenger bare å skrive selve metoden, ikke resten av klassen.
+
+Skriv metoden 'obliger_godkjent' her:
+Svar->
+
+def obliger_godkjent(self):
+    sum_foerste_seks = 0
+    for nr in range(1, 7):
+        sum_foerste_seks += self.oblig(nr)
+
+    return sum_foerste_seks >= 19 and self.oblig(7) > 0 and self.oblig(8) > 0
+
+
+
+Oppgave 2F: Programtilstand
+Nedenfor ser du er program og en datastrukturtegning fra PythonTutor. Tegningen viser tilstanden i programmet underveis.
+
+Siste steget er konstruktøren for Hus klassen, der self._farge = "rød".
+Neste steg er self._eier = "Kari" som er på linje 37.
+
+Svar -> 37
+
+
+
+------------------ Oppgave 3 ------------------
+
+
+Oppgave 3A: Fjerning av ugyldige datoer
+- En venn av deg har sendt deg denne klassen som vedkommende har tenkt å legge til grunn for å lage en enkel kalender:
+
+class Dato:
+    def __init__(self, dd, mm, aaaa):
+        self._dagnr = dd
+        self._mnd = mm
+        self._år = aaaa
+
+    def dagnr(self):
+        return self._dagnr
+    def mnd(self):
+        return self._mnd
+    def år(self):
+        return self._år
+
+I tillegg har vennen din skrevet denne funksjonen som lager en kalender for året 2023 som ei liste av Dato-objekter:
+
+def lagKalender2023():
+    kalender = []
+    for dag in range(32):
+        for mnd in range(13):
+            kalender.append(Dato(dag,mnd,2023))
+    return kalender
+
+Nå ber vennen din deg om å hjelpe til med å skrive en funksjon som fjerner dato-objekter som ikke finnes. Funksjonen tar inn ei liste med datoobjekter (som er det lagKalender2023 returnerer) og returnerer lista der de ugyldige datoene er fjernet. For å gjøre dette kan du legge til grunn at denne ordboken er tigjengelig i det globale skopet:
+
+dageriMnd = { 1:31, 2:28, 3:31, 4:30, 5:31, 6:30, 7:31, 8:31, 9:30, 10:31, 11:30, 12:31 }
+
+Skriv funksjonen fjernUgyldigeDatoer her:
+
+def fjernUgyldigeDatoer(kalender):
+    gyldige = []
+
+    for dato in kalender:
+        dag = dato.dagnr()
+        mnd = dato.mnd()
+
+        if mnd in dageriMnd and 1 <= dag <= dageriMnd[mnd]:
+            gyldige.append(dato)
+
+    return gyldige
+
+fjernUgyldigeDatoer(lagKalender2023())
+
+
+
+
+Oppgave 3B: Generér en gyldig kalender
+Skriv om funksjonen 'lagKalender2023', slik at den bare lager gyldige datoobjekter. Dato-objektene skal komme i riktig (kronologisk) rekkefølge med 1. januar 2023 først og 31.desemeber 2023 til slutt. Du kan fortsatt bruke denne globale ordboken:
+
+dageriMnd = { 1:31, 2:28, 3:31, 4:30, 5:31, 6:30, 7:31, 8:31, 9:30, 10:31, 11:30, 12:31 }
+
+def lagKalender2023():
+    kalender = []
+    for dag in range(32):
+        for mnd in range(13):
+            kalender.appen(Dato(dag,mnd,2023))
+    return kalender
+
+Skriv funksjonen lagKalender2023 her:
+
+Svar ->
+
+def lagKalender2023():
+    kalender = []
+
+    for mnd in range(1, 13):
+        for dag in range(1, dageriMnd[mnd] + 1):
+            kalender.append(Dato(dag, mnd, 2023))
+
+    return kalender
+
+lagKalender2023()
+
+
+
+Oppgave 3C: Kalendere for flere år
+I et år er det 365 dager, bortsett fra i skuddår som har 29. februar (29.2) i tillegg. Så et skuddår har 366 dager. Skriv en funksjon som returnerer ei ordbok med kalendere for årene fra og med 2023 til og med 2041. En kalender er en liste med dato-objekter. I tillegg til ordboken dageriMnd har du en global liste over skuddår i perioden:
+
+skuddår = [2024, 2028, 2032, 2036, 2040]
+dageriMnd = { 1:31, 2:28, 3:31, 4:30, 5:31, 6:30, 7:31, 8:31, 9:30, 10:31, 11:30, 12:31 }
+
+Ordaboken som returneres skal ha årstallet som nøkkel, og innholdsverdien skal være kalenderen (liste av datoobjekter) for det året.
+
+Skriv funksjonen lagKalender2023_2040 her:
+
+Svar ->
+
+def lagKalender2023_2040():
+    kalendere = {}
+
+    for aar in range(2023, 2042):
+        kalender = []
+
+        for mnd in range(1, 13):
+            antall_dager = dageriMnd[mnd]
+
+            if mnd == 2 and aar in skuddår:
+                antall_dager = 29
+
+            for dag in range(1, antall_dager + 1):
+                kalender.append(Dato(dag, mnd, aar))
+
+        kalendere[aar] = kalender
+
+    return kalendere
+
+def main():
+    antall_aar = 2040-2023
+    kalender = []
+    for i in range(antall_aar+1):
+        kalender = lagKalender2023_2040()
+
+    print(kalender)
+
+if __name__ == "__main__":
+    main()
+
+lagKalender2023_2040()
+
+
+
+
+------------------ Oppgave 4 ------------------
+
+Deloppgave 4A: Emne
+
+class Emne:
+
+    def __init__(self, emnekode, navn, hoest, vaar):
+        self.emnekode = emnekode
+        self.navn = navn
+        self.hoest = hoest
+        self.vaar = vaar
+
+    def __str__(self):
+        if self.hoest and self.vaar:
+            sem = "høst og vår"
+        elif self.hoest:
+            sem = "høst"
+        elif self.vaar:
+            sem = "vår"
+
+        return f"{self.emnekode}: {self.navn} ({sem})"
+
+
+Deloppgave 4B: Studieprogram
+
+class Studieprogram:
+
+    def __init__(self, navn):
+        self.navn = navn
+        self._data = {}
+
+    def legg_til(self, emne):
+        if emne.emnekode not in self._data.keys():
+            self._data[emne.emnekode] = emne
+            return
+        else:
+            print(f"{emne.emnekode} finnes fra før!")
+
+    @property
+    def emne_ordbok(self):
+        return self._data
+
+    def __iter__(self):
+        for emne in self._data.values():
+            yield emne
+
+    def __len__(self):
+        return len(self._data)
+
+
+
+Deloppgave 4C:
+
+def main():
+    in1000 = Emne("IN1000", "Introduksjon til objektorientert programmering", True, True)
+    in1010 = Emne("IN1010", "Objektorientert programmering", False, True)
+    in1150 = Emne("IN1150", "Logiske metoder", False, True)
+    in1050 = Emne("IN1050", "Introduksjon til design", True, False)
+
+    prosa = Studieprogram("Programmering og systemarkitektur")
+    desa = Studieprogram("Design, bruk, interaksjon")
+
+    prosa.legg_til(in1000)
+    prosa.legg_til(in1010)
+    prosa.legg_til(in1150)
+    desa.legg_til(in1000)
+    desa.legg_til(in1010)
+    desa.legg_til(in1050)
+
+    print(f"{prosa.navn} ({len(prosa)} emner)")
+    for emne in prosa:
+        print(emne)
+
+    print()
+    print(f"{desa.navn} ({len(desa)} emner)")
+    for emne in desa:
+        print(emne)
+
+if __name__ == "__main__":
+    main()
+
+
+
+Deloppgave 4D: Institutt
+
+class Institutt:
+
+    def __init__(self, navn):
+        self.navn = navn
+        self._studieprogrammer = []
+        self._emner = {}
+
+    def legg_til(self, studieprogram):
+        self._studieprogrammer.append(studieprogram)
+
+        for emne in studieprogram:
+            self._emner[emne.emnekode] = emne
+
+    def __iter__(self):
+        for studieprogram in self._studieprogrammer:
+            yield studieprogram
+
+    def __len__(self):
+        return len(self._studieprogrammer)
+
+
+
+
+Deloppgave 4E: Utvidelse Emne
+
+class Emne:
+
+    def __init__(self, emnekode, navn, hoest, vaar):
+        self.emnekode = emnekode
+        self.navn = navn
+        self.hoest = hoest
+        self.vaar = vaar
+        self._eier = None
+
+    def legg_til_eier(self, institutt):
+        self._eier = institutt
+
+    def __str__(self):
+        if self.hoest and self.vaar:
+            sem = "høst og vår"
+        elif self.hoest:
+            sem = "høst"
+        elif self.vaar:
+            sem = "vår"
+
+        if not self._eier:
+            return f"{self.emnekode}: {self.navn} ({sem})"
+        else:
+            return f"{self.emnekode}: {self.navn} ({sem}) - eies av {self._eier.navn}"
+
+
+
+Deloppgave 4F: Utvidelse Institutt
+
+class Institutt:
+
+    def __init__(self, navn):
+        self.navn = navn
+        self._studieprogrammer = []
+        self._emner = {}
+
+    def legg_til(self, studieprogram):
+        self._studieprogrammer.append(studieprogram)
+
+        for emne in studieprogram:
+            self._emner[emne.emnekode] = emne
+            emne.legg_til_eier(self)
+
+
+    def __iter__(self):
+        for studieprogram in self._studieprogrammer:
+            yield studieprogram
+
+    def __len__(self):
+        return len(self._studieprogrammer)
+
+
+
+Deloppgave 4G:
+
+def main():
+    in1000 = Emne("IN1000", "Introduksjon til objektorientert programmering", True, True)
+    in1010 = Emne("IN1010", "Objektorientert programmering", False, True)
+    in1150 = Emne("IN1150", "Logiske metoder", False, True)
+    in1050 = Emne("IN1050", "Introduksjon til design", True, False)
+
+    prosa = Studieprogram("Programmering og systemarkitektur")
+    dbi = Studieprogram("Design, bruk, interaksjon")
+
+    prosa.legg_til(in1000)
+    prosa.legg_til(in1010)
+    prosa.legg_til(in1150)
+
+    dbi.legg_til(in1000)
+    dbi.legg_til(in1010)
+    dbi.legg_til(in1050)
+
+    inst = Institutt("Institutt for informatikk")
+    inst.legg_til(prosa)
+    inst.legg_til(dbi)
+
+    print(f"{inst.navn} har {len(inst)} studieprogrammer")
+
+    for program in inst:
+        print(program.navn)
+        for emne in program:
+            print(emne)
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+------------------ Oppgave 5 ------------------
+
+
+Oppgave 5A: Blokkerte oppdrag
+I brettspillet Gloomhaven kan man spille mange forskjellige oppdrag som har hvert sitt nummer. Når du fullfører et oppdrag, kan dette blokkere andre oppdrag (slik at de ikke lenger kan spilles).
+
+Dette representerer vi med en ordbok 'oppdrag' hvor nøklene er oppdragsnummer, og verdiene lister hvor:
+- Element 0 viser om oppdraget er fullført (True) eller ikke (False).
+- Element 1 er en liste over oppdrag som kan blokkere dette oppdraget hvis de fullføres.
+Før noen av oppdragene er fullført vil denne ordboken se slik ut:
+
+# oppdragsnummer: [fullført, blokkeres_av]
+oppdrag = { 16: [False, []],
+            24: [False, []],
+            25: [False, []],
+            33: [False, [42]],
+            40: [False, [42]],
+            41: [False, [42]],
+            42: [False, [41]]}
+
+Lag en funksjon er_blokkert(nummer, oppdrag) som tar inn følgende parametere:
+- nummer: heltallsnummer på et oppdrag som vi skal sjekke om er blokkert.
+- oppdrag: en ordbok på formatet vist i eksempelet over, men ikke nødvendigvis med de samme verdiene.
+
+Funksjonen skal returnere True hvis oppdraget med nummer 'nummer' er blokkert av et annet oppdrag som er fullført, og False hvis ikke.
+I denne deloppgaven kan du anta at 'nummer' alltid vil være en nøkkel som finnes i oppdrag.
+
+Skriv ditt svar her:
+
+def er_blokkert(nummer, oppdrag):
+    blokkeres_av = oppdrag[nummer][1]
+
+    for oppdragsnr in blokkeres_av:
+        if oppdrag[oppdragsnr][0]:
+            return True
+
+    return False
+
+
+
+def main():
+    blokk = er_blokkert(42, oppdrag)
+    print(blokk)
+
+if __name__ == "__main__":
+    main()
+
+
+
+Deloppgave 5B: Opplåste oppdrag
+I tillegg til blokkering, kreves det ofte at andre oppdrag er fullført for at et oppdrag skal låses opp og kunne spilles.
+
+For å representere dette utvider vi ordboken 'oppdrag' fra forrige deloppgave, slik at nøklene fortsatt er oppdragsnummer, og verdiene lister hvor:
+- Element 0 viser om oppdraget er fulltført (True) eller ikke (False).
+- Element 1 er en liste over oppdrag som kan blokkere dette oppdraget hvis de fullføres.
+- Element 2 er listen over oppdrag som alle må fullføres for å låse opp dette oppdraget.
+
+Før noen av oppdragene er fullført, vil denne ordboken se slik ut:
+
+# oppdragsnummer: [fullført, blokkeres_av, låses_opp_av]
+oppdrag = { 16: [False, [], []],
+            24: [False, [], [16]],
+            25: [False, [], [16]],
+            33: [False, [42], [25]],
+            40: [False, [42], [24, 33]],
+            41: [False, [42], [40]],
+            42: [False, [41], [24]]}
+
+Lag en funksjon kan_spilles(nummer, oppdrag) som tar inn følgende parametre:
+- nummer: heltallsnummer på et oppdrag som vi skal sjekke om kan spilles
+- oppdrag: en ordbok på formatet vist i eksempelet over, men ikke nødvendigvis med de samme verdiene
+Funksjonen skal returnere False hvis oppdraget ikke kan spilles, det vil si hvis minst en av følgende stemmer:
+- dette oppdragsnummeret finnes ikke i ordboken
+- oppdraget er blokkert, det vil si at er_blokkert(nummer, oppdrag) returnerer True
+(du kan anta at denne funksjonen virker selv om du ikke fikk til forrige deloppgave)
+- man har ikke fullført alle oppdragene som dette oppdraget låses opp av
+Hvis oppdraget derimot kan spilles, skal funksjonen returnere True.
+Skriv ditt svar her:
+
+def kan_spilles(nummer, oppdrag):
+    if nummer not in oppdrag:
+        return False
+
+    if er_blokkert(nummer, oppdrag):
+        return False
+
+    laases_opp_av = oppdrag[nummer][2]
+
+    for oppdragsnr in laases_opp_av:
+        if not oppdrag[oppdragsnr][0]:
+            return False
+
+    return True
