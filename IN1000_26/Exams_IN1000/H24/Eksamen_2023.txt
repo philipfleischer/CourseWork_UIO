@@ -1,0 +1,383 @@
+Eksamen 2023
+
+Oppgave 1a)
+a = "Hei"
+b = "Hå"
+
+b = a
+
+print(a, b)
+
+Hva vil koden over skrive ut?
+Svar -> Hei Hei
+
+
+Oppgave 1b)
+tall = 8
+
+if tall < 4:
+    if tall > 7:
+        print("Linje 5 kjører!")
+elif tall < 10:
+    print("Linje 7 kjører!")
+elif tall > 100:
+    print("Linje 9 kjører!")
+else:
+    print("Linje 11 kjører!")
+
+Hvilke av kodelinjene med print komer til å kjøre i dette programmet?
+Svar -> Linje 7 kjører!
+
+
+Oppgave 1c)
+# Fyll inn her
+while teller <= 10:
+    print(teller)
+    teller = teller + 1
+
+Hva må fylles inn på linje 1 for at programmet skal skrive ut tallene fra og med 1 til og med 10?
+Svar -> teller = 1
+
+
+Oppgave 1d)
+for i in range(10):
+#fyll inn her
+
+Hva må fylles inn på linje 2 for at programmet skal skrive ut alle tallene fra og med 1 til og med 10?
+Svar -> print(i + 1)
+
+
+Oppgave 1e)
+from random import randint
+
+terningkast = randint(1,6)
+print(terningkast)
+#Fyll inn her
+    terningkast = randint(1,6)
+    print(terningkast)
+
+I dette programmet gir funksjonskallet randint(1,6) oss et tilfeldig heltall fra og med 1 til og med 6, akkurat som et terningkast.
+
+Hva må du skrive på linje 5 for at programmet skal fortsette å generere tilfeldige tall helt til du får en sekser?
+Svar -> while terningkast < 6:
+
+
+Oppgave 1f)
+vers = 100
+while vers > 0:
+    print("Fiskebollen lever i havet")
+    print("Havet er fiskobollens hjem")
+    print("Dette er er vers nummer", vers)
+    print("Nå er det bare", vers - 1, "igjen)
+    print()
+print("Sangen er slutt!")
+
+Hva blir resultatet av å kjøre denne løkken?
+Svar -> Uendelig mange vers skrives ut siden variabelen vers aldri reduseres.
+
+
+Oppgave 1g)
+Finn ALLE feilene i dette programmet (det kan være mer enn en):
+def superfunksjon(x):
+    return "Den kuleste verdien er " + x
+
+superfunksjon(42)
+print(x)
+
+Programmet får denne feilmeldingen når det prøver å kjøre:
+Traceback (most recent call last):
+    File "feil.py", line 15, in <module>
+        superfunksjon(42)
+    File "feil.py", line 13, in superfunksjon
+        return "den kuleste verdien er " + x
+TypeError: can only concatenate str (not "int") to str
+
+Svar -> Det er brukt 'x' i stedet for 'str(x)' i returverdien og den lokale variabelen 'x' er ikke definert utenfor funksjonen.
+
+
+Oppgave 2)
+Denne koden er felles for alle deloppgavene på oppgave 2:
+
+class Gås:
+    def __init__(self, navn):
+        self._navn = navn
+        self._kaffekopper = 0
+
+    def drikk_kaffe(self):
+        self._kaffekopper += 1
+        if self._kaffekopper < 2:
+            print(self._navn, "koser seg med en god kopp kaffe")
+        else:
+            print(self._navn, "drakk for mye kaffe og føler seg ikke bra!")
+
+gås0 = Gås("Arthur")
+gås1 = Gås("Baldur")
+gås2 = Gås("Honk")
+favorittgås = gås2
+
+gås1 = gås0
+gås1.drikk_kaffe()          # Oppgave 2a
+gås2 = gås1
+gås2.drikk_kaffe()          # Oppgave 2b
+favorittgås.drikk_kaffe()   # Oppgave 2c
+
+Oppgave 2a)
+Hva skrives ut på linje 19 (gås1.drikk_kaffe())?
+Svar -> Arthur koser seg med en kopp kaffe
+
+Oppgave 2b)
+Hva skrives ut på linje 21 (gås2.drikk_kaffe())?
+Svar -> Arthur drakk for mye kaffe og føler seg ikke bra!
+
+Oppgave 2b)
+Hva skrives ut på linje 22 (favorittgås.drikk_kaffe())?
+Svar -> Honk koser seg med en god kopp kaffe.
+Grunnen er at favorittgås ble satt til å peke på gås2 objektet da gås2 het Honk og ikke da gås2 ble satt til å være gås1.
+
+Oppgave 2d) # TODO: Legg inn bedre svar her!
+Kryss av for alle påstandene som er sanne:
+1. Hvis vi legger til gås0._kaffekopper = 0 i linje 23 bruker vi klassen slik den er ment å brukes. False
+2. Konstruktøren __init__(navn) er en del av grensesnittet til klassen Gås. True
+3. Hvis vi legger til self._navn = "Monsieur Tresdangereux" i linje 23 får vi en feilmelding når programmet skal kjøre. True
+4. Metoden drikk_kaffe() er en del av grensesnittet til klassen Gås. True
+5. Hvis vi erstatter self._kaffekopper med self.kaffekopper i alle metodene, vil denne variabelen ha en felles verdi for alle objekter av klassen Gås. False
+6. Variabelen self._kaffekopper er en del av grensesnittet til klassen Gås. False
+
+
+
+Oppgave 3a)
+Write a function 'points' that takes a string as a parameter. We will assume this string is one of "firkløver", "hjerte", "lyn" og "lyspære". The function should return an integer equal to the number of letters in the parameter string - the exception being "lyn", where the function should return 0.
+
+Skriv ditt svar her:
+
+def points(type):
+    tillatt = ["firkløver", "hjerte", "lyn", "lyspære"]
+    if (type not in tillatt) or (type == "lyn"):
+        return 0
+    elif type == "firkløver":
+        return len("firkløver")
+    elif type == "hjerte":
+        return len("hjerte")
+    elif type == "lyspære":
+        return len("lyspære")
+
+def main():
+    print(points("hjerte"))
+
+if __name__ == "__main__":
+    main()
+
+
+
+Oppgave 3b)
+Anta at du har en funksjon 'poeng' som tar inn en streng med tekst som parameter og returnerer en poengsum (et heltall). Vi anter funksjonen eksisterer og virker som den skal.
+Lag en ny funksjon 'poengsum' som tar inn en liste med strenger som parameter, og bruker funksjonen 'poeng' til å regne ut hvor mange poeng hver streng er verdt. Funksjonen din skal returnere summen av poengene for alle strengene i liste.
+
+Skriv dit svar her:
+
+def poengsum(liste):
+    summen = 0
+    for ord in liste:
+        summen += poeng(ord)
+    return summen
+
+def main():
+    print(poengsum(["Hei", "lyspære"]))
+
+if __name__ == "__main__":
+    main()
+
+
+
+Oppgave 3c)
+Lag en funksjon 'velg' som tar inn en liste som parameter. Funksjonen din skal be brukeren mo å skrie inn e heltall (vi antar at brukeren aldri vil skrive inn noe annet):
+- Hvis heltallet ikke er en gyldig indeks i liste, skal funksjoenn spørre brukeren om igjen helt til det kommer inn en gyldig indeks.
+- Hvis heltallet er en gyldig indeks i listen, skal funksjonen returnere elementet som ligger på denne indeksen.
+Du trenger ikke gi brukeren informasjon om hvilket tall som vil være gyldige valg.
+
+Skriv ditt svar her:
+
+def velg(liste):
+    index_grense = len(liste) - 1
+    innenfor_grense = False
+    while not innenfor_grense:
+        tall = abs(int(input("Skriv inn et heltall: ")))
+        if tall <= index_grense:
+            innenfor_grense = True
+            return liste[tall]
+
+def main():
+    print(velg([1, 2, 3, 4, 5]))
+
+if __name__ == "__main__":
+    main()
+
+
+
+Oppgave 3d)
+Vi lager et spill mef følgende spillkort, som hver er verdt et visst antall poeng når de velges av brukeren:
+(hjerte, lyspære) - (firkløver, lyspære) - (lyn, lyn)
+I spillet representerer vi disse tre kortene som tre lister med to strenger i her, på denne måten:
+
+kort1 = ["hjerte", "lyspære"]
+kort2 = ["firkløver", "lyspære"]
+kort3 = ["lyn", "lyn"]
+
+kortliste = [kort1, kort2, kort3]
+
+Lag en funksjon 'spill_et_kort' som tar inn en slik 'kortliste' som parameter. Funksjonen skal la brukeren velge ett av de tre kortene og skrive ut til skjermen hvor mange poeng brukeren fikk for kortet som ble valgt.
+Du kan anta at følgende funksjoner eksisterer og virker som de skal.
+- En funksjon 'poengsum' som tar inn en liste med strenger (representerer et kort) som parameter og returnerer et heltall (som representerer poengsum for et kort).
+- En funksjon 'velg' som ber brukeren om å velge et element fra en liste ved å skrive inn et heltall (indeks i listen) og returnerer elementet på denne indeksen.
+
+Skriv svaret ditt her:
+
+def spill_et_kort(kortliste):
+    innenfor = False
+    while not innenfor:
+        valgt_kort = int(input("Velg et kort (1-3): "))
+        if valgt_kort > 0 and valgt_kort <=3:
+            innenfor = True
+
+    trukket = velg(kortliste[valgt_kort])
+    print(f"Du trakk: {trukket}")
+    poeng_trukket = poengsum(trukket)
+    print(f"Du fikk {poeng_trukket} poeng.")
+
+def main():
+    kort1 = ["hjerte", "lyspære"]
+    kort2 = ["firkløver", "lyspære"]
+    kort3 = ["lyn", "lyn"]
+    kortliste = [kort1, kort2, kort3]
+    spill_et_kort(kortliste)
+
+if __name__ == "__main__":
+    main()
+
+
+
+Oppgave 3d)
+ord = ["F", "E", "R", "S", "K", "E", "N", "B", "R", "U", "S"]
+tell_tegn = {}
+for tegn in ord:
+    if tegn not in tell_tegn:
+        tell_tegn[tegn] = 0
+    tell_tegn[tegn] += 1
+for tegn in tell_tegn:
+    print("Antall", tegn, ":", tell_tegn[tegn])
+
+setning = ["Foldhest", "er", "best", "ingen", "protest"]
+tell_ord = {}
+for ord in setning:
+    if ord not in tell_ord:
+        tell_ord[ord] = 0
+    tell_ord[ord] += 1
+for ord in tell_ord:
+    print("Antall", ord, ":", tell_ord[ord])
+
+Forenkle programmet over så mye som mulig ved hjelp av en prosedyre som kalles to ganger, og som kunne gjenbrukes senere på andre lister.
+
+Du skal skrive både prosedyren og programmet som bruker den, og ditt program skal gi akkurat samme utskrift som programmet over.
+
+Skriv ditt svar her:
+
+def lag_ordbok(liste):
+    tell_tegn = {}
+    for tegn in liste:
+        if tegn not in tell_tegn:
+            tell_tegn[tegn] = 0
+        tell_tegn[tegn] += 1
+    for tegn in tell_tegn:
+        print("Antall", ord, ":", tell_ord[ord])
+
+def main():
+    ord = ["F", "E", "R", "S", "K", "E", "N", "B", "R", "U", "S"]
+    setning = ["Foldhest", "er", "best", "ingen", "protest"]
+    lag_ordbok(ord)
+    lag_ordbok(setning)
+
+if __name__ == "__main__":
+    main()
+
+
+Oppgave 4a)
+
+class Plagg:
+    def __init__(self, farger):
+        self._farger = farger
+        self._antall_antrekk = 0
+
+    def har_farge(self, farge):
+        return farge in self._farger
+
+    def hent_ant_antrekk(self):
+        return self._antall_antrekk
+
+    def oppdater_ant_antrekk(self, antall):
+        self._antall_antrekk = antall
+
+Oppgave 4b)
+
+class Kategori:
+    def __init__(self, kategorinavn):
+        self._kategorinavn = kategorinavn
+        self._plagg = []
+
+    def nytt_plagg(self, farger):
+        ny_plagg = Plagg(farger)
+        self._plagg.append(ny_plagg)
+
+    def finn_plagg_med_farge(self, farge):
+        plagg_med_farger = []
+        for plagg in self._plagg:
+            if plagg.har_farge(farge):
+                plagg_med_farger.append(plagg)
+        return plagg_med_farger
+
+    def trekk_tilfeldig_plagg(self, farge):
+        plagg_med_fargen = finn_plagg_med_farge(farge)
+        tilfeldig_idx = randint(0, len(plagg_med_fargen)-1)
+        return plagg_med_fargen[tilfeldig_idx]
+
+Oppgave 4c)
+
+class Antrekk:
+    def __init__(self, anledninger, plagg):
+        self._anledninger = anledninger
+        self._plagg = plagg
+        for pl in self._plagg:
+            pl.oppdater_ant_antrekk()
+
+    def hent_plaggene(self):
+        return self._plagg
+
+    def legg_til_anledning(self, anledning):
+        if andlening not in self._anledninger:
+            self._anledninger.append(anledning)
+
+    def passer_til(self, anledning):
+        return anledning in self._anledninger
+
+    def har_farge(self, fargen):
+        for pl in self._plagg:
+            if pl.har_farge(fargen)
+                return True
+        return False
+
+
+Oppgave 4d)
+
+class Garderobe:
+    def __init__(self):
+        self._kategori_ordbok = {}
+        self._antrekk_liste = []
+
+    def nytt_plagg(self, kategorinavn, farger):
+        if not kategorinavn in self._kategori_ordbok:
+            self._kategori_ordbok[kategorinavn] = Kategori(kategorinavn)
+        self._kategori_ordbok[kategorinavn] += Kategori(kategorinavn)
+        self._kategori_ordbok[kategorinavn].nytt_plagg(farger)
+
+Oppgave 4e)
+    # Utvidelse av class Garderobe
+    def finn_antrekk_til_anledning(self, anledning):

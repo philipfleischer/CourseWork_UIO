@@ -1,0 +1,402 @@
+Oppgave 1a)
+
+tall = 10
+tall = tall + 2
+print(tall*2)
+
+Hva skrives ut når koden over kjøres?
+Svar -> 24
+
+
+Oppgave 1b)
+
+tekst1 = '1'
+tekst2 = '2'
+tekst3 = '3'
+tall = int(tekst1 + tekst2) + int(tekst3)
+print(tall)
+
+Hva skrives ut når koden over kjøres?
+Svar -> 15
+
+
+Oppgave 1c)
+tall = 9
+if tall<10:
+    tall = tall+2
+    tall = tall+1
+else:
+    tall = tall - 10
+print(tall)
+
+Hva skrives ut når koden over kjøres?
+Svar -> 12
+
+Oppgave 1d)
+summen = 0
+for t1 in [1, 2]:
+    for t2 in [3,4]:
+        if t1*t2 < 4:
+            summen += t1*t2
+print(summen)
+
+Hva skrives ut når koden over kjøres?
+Svar -> 3
+
+Oppgave 1e)
+ordbok = {1:2}
+teller = 1
+while not 5 in ordbok:
+    ordbok[1] = ordbok[1] + teller
+    ordbok[ ordbok[1] ] = teller
+    teller = teller+1
+print(ordbok[1])
+
+Hva skrives ut når koden over kjøres?
+Svar -> 5
+
+HVORFOR?
+
+ordbok = {1:2}
+teller = 1
+while not 5 in ordbok:
+    print(ordbok)                       # {1: 2}, {1: 3, 3: 1}
+    ordbok[1] = ordbok[1] + teller
+    print(ordbok)                       # {1: 3}, {1: 5, 3: 1}
+    print(f"ordbok[1] = {ordbok[1]}")   # ordbok[1] = 3, ordbok[1] = 5
+    ordbok[ ordbok[1] ] = teller
+    print(ordbok)                       # {1: 3, 3: 1}, {1: 5, 3: 1, 5: 2}
+    print(f"ordbok[ ordbok[1] ] = {ordbok[ ordbok[1] ]}")
+                        # ordbok[ ordbok[1] ] = 1, ordbok[ ordbok[1] ] = 2
+    teller = teller+1
+    print(ordbok)                       # {1: 3, 3: 1}, {1: 5, 3: 1, 5: 2}
+    print("teller = {teller}")          # teller = 2, teller = 3
+print(f"SVAR = {ordbok[1]}")            # SVAR = 5
+
+OUTPUT:
+{1: 2}
+{1: 3}
+ordbok[1] = 3
+{1: 3, 3: 1}
+ordbok[ ordbok[1] ] = 1
+{1: 3, 3: 1}
+teller = 2
+{1: 3, 3: 1}
+{1: 5, 3: 1}
+ordbok[1] = 5
+{1: 5, 3: 1, 5: 2}
+ordbok[ ordbok[1] ] = 2
+{1: 5, 3: 1, 5: 2}
+teller = 3
+SVAR = 5
+
+
+Oppgave 2a)
+class Person:
+    def __init__(self, alder):
+        self._alder1 = 0
+        alder2 = alder  #merk at ikke self
+    def sett_alder1(self, alder):
+        self._alder1 = alder
+    def sett_alder3(self, alder):
+        alder3 = alder #merk at ikke self
+    def hent_alder1(self):
+        return self._alder1
+    def hent_alder2(self):
+        return alder2 #merk at ikke self
+    def hent_alder3(self):
+        return alder3 #merk at ikke self
+p1 = Person(10)
+p2 = Person(20)
+#Kode over er felles for oppgave 2a, 2b, 2c og 2d.
+print( p1.hent_alder1() )
+
+Hva skjer når koden over kjøres?
+Svar -> "Tallet 0 skrives ut"
+
+
+Oppgave 2b)
+tall = p1.hent_alder1()
+p3 = p1
+p3.sett_alder1(15)
+print(tall)
+
+Hva skjer når koden over kjøres?
+Svar -> "Det skrives ut 0 til terminalen".
+
+
+Oppgave 2c) TODO: MÅ FÅ FLERE SÅNNE EKSEMPLER
+print( p1.hent_alder2() )
+
+Hva skjer når koden over kjøres?
+Svar -> "Man får en feilmelding (kodelinjene vil ikke kjøre)"
+
+Oppgave 2d)
+p1.sett_alder3(15)
+p2.hent_alder3()
+
+Hva skjer når koden over kjøres?
+Svar -> "Man får en feilmelding (kodelinjene vil ikke kjøre)"
+
+
+Oppgave 3a)
+Skriv funksjonen 'jages' som har en parameter 'dyreliste' som er en liste med dyr, hvor hver dyr er en av strengene 'mus', 'katt' eller 'hund'. Hvert dyr kan være flere ganger i listen.
+
+Hvis noen av dyrene i listen vil jage noen av de andre dyrene skal funksjonen returnere True, ellers False. Vi antar at en hund alltid vil jage en katt, og at en katt alltid vil jage en mus, men at dyrene ellers ignorerer hverandre.
+
+Kallet jages(['mus', 'katt']) skal altså returnere True fordi katten vil jage musen, mens kallet jages(['mus', 'mus', 'hund']) skal returnere False.
+
+Skriv ditt svar her:
+
+def jages(dyreliste):
+    if "mus" and "katt" in dyreliste:
+        return True
+    elif "katt" og "hund" in dyreliste:
+        return True
+    return False
+
+def main():
+    dyr1 = ['mus', 'katt']
+    dyr2 = ['katt', 'mus']
+    print(jages(dyr1))
+    print(jages(dyr2))
+
+if __name__ == "__main__":
+    main()
+
+
+Oppgave 3b)
+Skriv en funksjon utvidet_jages som ligner på funksjonen i oppgave 3a, bortsett fra at man her ønsker å være mer fleksibel på hvilke dyr som finnes og på hvilke dyr som jager hvilke.
+
+Funksjonen utvidet_jages har to parametere: en parameter dyreliste som er en liste av strenger, og en parameter jaging som er en ordbok hvor hver nøkkel er et dyr (en streng) som jager dyret (streng) i den tilhørende innholdsverdien. Denne funksjonen kan håndtere alle slags dyr.
+
+Kallet utvidet_jages(['ulv', 'mus', 'sau'], {'ulv':'sau'}) skal altså returnere True fordi vi har definert at ulv jager sau og begge disse dyrene finnes i dyrelisten.
+Kallet utvidet_jages(['ulv', 'mus', 'hund'], {'ulv':'sau', 'katt':'mus'}) skal derimot returnere False.
+
+Skriv ditt svar her:
+
+def utvidet_jages(dyreliste, jaget):
+    for jager, jages in jaget.items():
+        if jager in dyreliste and jages in dyreliste:
+            return True
+    return False
+
+def main():
+    print(utvidet_jages(['ulv', 'mus', 'sau'], {'ulv':'sau'}))
+    print(utvidet_jages(['ulv', 'mus', 'hund'], {'ulv':'sau', 'katt':'mus'}))
+
+if __name__ == "__main__":
+    main()
+
+
+Oppgave 3c)
+Skriv en funksjon 'flertall' som tar inn en liste dyreliste med navn på ulike dyr (en liste av strenger), og som returerer navnet på dyret det finnes flest av i listen (hvilken streng som finnes flest ganger i listen). Dersom det er likt mellom to - altså at de to dyrene det finnes flet av er til stede like mange ganger i listen - så skal funksjonen returnere "uavgjort".
+
+Kallet flertall(['ulv', 'sau', 'ulv']) skal returnere 'ulv', mens kallet flertall(['ulv', 'sau', 'sau', 'ulv']) skal returnere 'uavgjort'.
+
+Skriv ditt svar her:
+
+def flertall(dyreliste):
+    dyr_ordbok = {}
+
+    for dyr in dyreliste:
+        if dyr not in dyr_ordbok:
+            dyr_ordbok[dyr] = 1
+        dyr_ordbok[dyr] += 1
+
+    dyr_oftest = None
+    dyr_flest = 0
+    uavgjort = False
+
+    for dyr in dyr_ordbok:
+        current_antall = dyr_ordbok[dyr]
+
+        if current_antall > dyr_flest:
+            dyr_oftest = dyr
+            dyr_flest = current_antall
+            uavgjort = False
+        elif current_antall == dyr_flest:
+            uavgjort = True
+
+    if uavgjort:
+        return "Uavgjort"
+    else:
+        return dyr_oftest
+
+def main():
+    print(flertall(['ulv', 'sau', 'ulv']))      # 'ulv'
+    print(flertall(['ulv', 'sau', 'sau', 'ulv']))     # 'Uavgjort'
+
+if __name__ == "__main__":
+    main()
+
+
+Oppgave 4)
+# Oppgaveteksten er i et eget dokument.
+
+Oppgave 4a)
+
+class Abonnent:
+    def __init__(self, abonnentnavn, preferanser):
+        self._abonnentnavn = abonnentnavn
+        self._preferanser = preferanser
+        self._paabegynteSerier = {}
+
+    def hent_preferanser(self):
+        return self._preferanser
+
+    def sjekk_om_sett(self, serienavn):
+        return self._paabegynteSerier[serienavn] > 0
+
+    def se_en_episode(self, serienavn):
+        if self._paabegynteSerier[serienavn] > 0:
+            self._paabegynteSerier[serienavn] += 1
+        else:
+            self._paabegynteSerier[serienavn] = 1
+
+
+Oppgave 4b)
+
+class Serie:
+    def __init__(self, serienavn):
+        self._serienavn = serienavn
+        self._episoder = self._les_fra_fil()
+        self._tager = {}
+
+
+Oppgave 4C)
+
+    # Utivdelse av class Serie
+
+    def _les_fra_fil(self):
+        ordbok = {}
+        filnavn = self._serienavn + ".txt"
+        with open(filnavn, "r") as fil:
+            for linje in fil:
+                deler = linje.strip().split(" ")
+                ordbok[deler[0]] = deler[1]
+        return ordbok
+
+    def hent_serietags(self):
+        for ep, tag in self._episoder.items():
+            if tag in self._tager:
+                self._tager[tag] += ep
+            else:
+                self._tager[tag] = ep
+        return self._tager
+
+Oppgave 4f)
+
+    # Utvidelse av class Serie
+    def beregn_match(self, preferanse):
+        match = 0
+        for tag in preferanse.keys():
+            if tag in self._tager:
+                match += preferanse[tag]
+        return match
+
+
+
+Oppgave 4d)
+
+class Tjeneste:
+    def __init__(self, serienavnliste):
+        self._serienavnliste = serienavnliste
+        self._serier = {}
+        self._tagerIBruk = []
+        self._abonnenter = {}
+
+    def _konstruktoer_operasjoner(self):
+        for serie in self._serienavnliste:
+            self._serier[serie] = Serie(serie)
+        for serieobjekt in self._serier.values():
+            tags = serieobjekt.hent_serietags()
+            for tag in tags.keys():
+                if tag not in self._tagerIBruk:
+                    self._tagerIBruk.append(tag)
+
+    def ny_abonnent(self):
+        ab_navn = input("Vennligst oppgi abonnentens navn: ")
+        print(f"Velkommen til strømmetjenesten {ab_navn}!")
+        preferanse_ordbok = {}
+        for tag in self._tagerIBruk:
+            preferanse = input("Vennligst gi din preferanse for {tag} (-1, 0, 1): )
+            while preferanse not in ["-1", "0", "1"]:
+                print("Du må svare enten -1, 0 eller 1")
+                preferanse = input("Vennligst gi din preferanse for {tag} (-1, 0, 1): )
+            if int(preferanse) == 0:
+                continue
+            elif int(preferanse) == 1:
+                preferanse_ordbok[tag] = 1
+            else:
+                preferanse_ordbok[tag] = -1
+        abonnent = Abonnent(ab_navn, preferanse_ordbok)
+        self._abonnenter[ab_navn] = abonnent
+
+    def foreslå_serier(self, abonnentnavn):
+        abonnent = self._abonnenter[abonnentnavn]
+        match = beregn_match(abonnent.hent_preferanser())
+        foreslaatte_serier = []
+        if match < 0:
+            print(f"Match = {match}, men Match må være større enn 0")
+            return
+        sett_alle_episoder_i_alle_serier = True
+        for serie in self._serienavnliste:
+            if not abonnent.sjekk_om_sett(serie):
+                sett_alle_episoder_i_alle_serier = False
+                foreslaatte_serier.append(serie)
+        if sett_alle_episoder_i_alle_serier:
+            print("Desverre er alle seriene allerede påbegynt, kan ikke foreslå noen serier til deg.")
+            return
+        print("------Foreslåtte serier for deg -----------)
+        for forslag in foreslaatte_serier:
+            print(forslag)
+
+
+Oppgave 5a)
+Skriv en funksjon felles som har en parameter 'tall_lister' som tar inn en nøstet liste - en liste av lister av heltall. Funksjonen skal returnere en liste med alle heltall som finnes to eller flere ganger i den nøstede listen. Det er uten betydning om et slikt heltall finnes i flere ulike lister i den nøstede listen eller om der finnes flere ganger i den samme lsiten. Det er også uten betydning hvilken rekkefølge de felles tallene returneres i.
+
+Kallet felles([ [1,5,1], [3,4], [2,3] ]) skal altså returnere enten [1,3] eller [3,1] siden tallene 1 og 3 finnes to steder i den nøstede listen (og siden rekkefølgen på tallene som returneres ikke er av betydning).
+
+Skriv ditt svar her:
+
+def fells(tall_lister):
+    for_ordbok = {}
+    for liste in tall_lister:
+        for tall in liste:
+            if tall in for_ordbok:
+                for_ordbok[tall] += 1
+            else:
+                for_ordbok[tall] = 1
+    ny_liste = []
+    for tall, antall in for_ordbok.items():
+        if antall > 1:
+            ny_liste.append(tall)
+
+    return ny_liste
+
+def main():
+    print(felles([ [1,5,1], [3,4], [2,3] ])) # [1,3] eller [3,1]
+
+if __name__ == "__main__":
+    main()
+
+
+Oppgave 5b)
+Skriv en funksjon 'adskilt' som har en parameter 'tall_lister' som tar inn en nøstet liste - en (ikke-tom) liste av (ikke-tomme) lister av tall. Funksjonen skal returnere True dersom det i den nøstede listen finnes to lister hvor det er slik at hvert av tallene i den ene listen er ekte større enn alle tallene i den andre listen.
+
+Kallet adskilt([ [1,10], [6,8], [2,3,7] ]) skal returnere True fordi hvert tal i den andre listen er større enn alle tall i den tredje.
+Kallet adskilt([ [1,100], [6,8], [2,3,7] ]) skal returnere False.
+
+Skriv ditt svar her:
+
+def adskilt(tall_lister):
+    for liste1 in tall_lister:
+        for liste2 in tall_lister:
+            if min(liste1) > max(liste2):
+                return True
+    return False
+
+def main():
+    print(adskilt([ [1,10], [6,8], [2,3,7] ]))      #True
+    print(adskilt([ [1,100], [6,8], [2,3,7] ]))     #False
