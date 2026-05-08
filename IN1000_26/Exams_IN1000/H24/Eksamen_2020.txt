@@ -1,0 +1,443 @@
+Oppgave 1a)
+Kva for uttrykk manglar som argument til print i line 5 for at "Erna Solberg" skal skrivast ut av denne koden?
+Uttrykket skal innehalde variabelen navn. Fyll ut i svarboksen.
+
+statsminister = False
+navn = "Er"
+if statsminister:
+    navn = navn + " Solberg"
+Svar: print(navn + "na Solberg")
+
+Oppgave 1b)
+a = randint(0, 100) # Gir a en tilfeldig heltallsverdi mellom 0 og 100
+b = randint(0, 100)
+c = randint(0, 100)
+
+while a != b or a > c:
+    b = randint(0, 100)
+    c = randint(0, 100)
+
+if a <= c and ?: #Erstatt ?-tegnet med et logisk uttrykk
+    print("OK")
+else:
+    print("Nei, her gikk du i else-greina!")
+
+Korleis kan du fullføre testen i line 9 med eit logisk uttrykk (i steden for ?) som gjer at denne koden alltid skriv ut "OK"? Uttrykket skal inkludere variablene a og b.
+Svar: a==b eller b==a
+
+
+Oppgave 1c)
+Hva er det største mulige heitallet som kan tilordnes variabelen tall i linje 1 slik at variabelen tekst får verdien "baa" ?
+
+tall = #hvilket tall skal stå her?
+t1 = "a"
+if tall < 8:
+    t1 = t1 + "a"
+else:
+    t1 = t1 + "b"
+tekst = "b" + t1
+
+Skriv bare tallet: 7
+
+
+Oppgave 1d)
+Skriv et logisk uttrykk i svarfeltet, slik at utskriften alltid blir "ja". Bruk operatoren > og heltallene 3 og 4.
+
+if False or (4>3):
+    print("ja")
+else:
+    print("nei")
+
+Oppgave 1e)
+a=1
+while a<10:
+    a = 3*a
+    for b in [3,2,1]:
+        a += b
+if a<25:
+    a = a*2
+    while a < 100:
+        a += 1
+while a<29:
+    a = a + 3
+print(a)
+
+Hva blir skrevet ut her? Svar: 33
+
+
+Oppgave 1f)
+Hvilket helltall mangler i uttrykket på nederste linjen for at variabelen tall skal få verdien 10 etter at denne koden er kjørt?
+
+tall = 5
+while tall < 10:
+    tall = tall - 2
+    tall = tall * 2
+tall = tall - ?
+
+Skriv tallet som skal erstatte spørsmålstegnet her (du skal ikke endre noe i resten av linja): Svar: 2
+
+
+
+Oppgave 1g)
+Skriv en verdi i svarfeltet slik at utskriften alltid blir "ja".
+liste = [-1, 2, 322, 95]
+s = 0
+for tall in liste:
+    s = s + liste[1]
+if s == 8:
+    print("ja")
+else:
+    print("nei")
+
+
+Oppgave 1h)
+Petter er 21 år gammel. Hvordan oppretter du et nytt objekt referert av petter slik at alderen blir satt riktig i objektet? Fyll ut svarboksen med høyresiden som mangler i siste kodelinje.
+class Info:
+def __init__(self, x):
+    self._alder = 2021-x
+
+Svar:
+petter = Info(2000)
+
+Oppgave 1i)
+tall = 1+2+3
+tall = tall*2
+tall = tall
+# Fullfør tilordningen over og skriv hele linje 4 i svaret.
+print(tall)
+
+Hvordan kan du fullføre linje 4 slik at denne koden skriver ut tallet 5? Skriv hele linje 4 i svarboksen (utenlinenummer).
+(tall = tall-7)
+
+
+Oppgave 1j)
+Hva må stå på høyresiden i første linje for at koden nedenfor skal skrive ut IN1000?
+a=IN1
+if not True:
+    a = "I1"
+a += "000"
+print(a)
+
+
+
+Oppgave 2a)
+Hvilket uttrykk må fylles inn i svarboksen for at denne koden skal skrive ut en streng der annethvert tegn er et siffer (det vil si et tall fra 0 til 9) og hvert siffer kun forekommer en gang? Variabelen streng skal være med i uttrykket.
+
+tall = 3
+streng = "*" + "3"
+for i in range(tall):
+    streng = streng + "*"
+    streng = streng + str(i)
+print (streng)
+
+
+Oppgave 2b)
+Koden skal skrive ut en streng der annethvert tegn er en bokstav, og annethvert tegn er et siffer (det vil si et tall fra 0 til 9). Hvert siffer skal kun forekomme en gang.
+
+t = 2
+streng = "A" + str(t-1)
+for c in [2, 2*t, 4*t]:
+    streng = streng + "A"
+    streng = ?
+print(streng)
+Hvilket uttrykk kan erstatte spørsmålstegnet i linje 5 i bildet for at dette skal bli riktig?
+Skriv svaret her (kun høyresiden, ikke hele programsetningen): streng + str(c)
+
+
+Oppgave 2c)
+i = 0
+t = "x"
+while i<5 and len(t)<4:
+    i = i+1
+    t=t+"x"
+assert i == ?
+Fyll ut assert-setningen slik at programmet i bildet kjører feilfritt.
+Skriv svaret her: 3
+
+
+Oppgave 2d)
+def funk(a, b):
+    return a #Fullfør uttrykket slik at koden kjører uten feil
+assert funk(1*2 + 3, 2) * 3 == 21
+assert funk(1+2, 3) * 2 == 12
+assert funk(2,2) + 3 == 7
+
+Hva må denne funksjonen returnere på linje 3 for at dette programmet aldri skal feile?
+Fullfør return-setningen i svarboksen (skriv kun det som mangler): return a + b
+
+
+Oppgave 2e)
+ordbok = {'ff': [4,7,4]}
+Hva er verdien til svar når koden nedenfor er utført?
+ordbok["ff"].append(7)
+svar = len(ordbok["ff"])
+Skriv svaret her: (4)
+
+
+Oppgave 2f)
+liste = [1,1,-1,2,-2,3,-1,3,5,-2,3,1,-7,8,-9,3,2,-3,6,5,4,-2,3,2]
+total=0
+i=0
+while liste[i]>0:
+    total += liste[i]
+    i += 1
+i=len(liste)-1
+while liste[i]>0:
+    total += liste[i]
+    i -= 1
+i=0
+while liste[i] > len(liste):
+    total += liste[i]
+    i += 1
+print(total)
+Hva skrives ut her? 7
+
+
+Oppgave 2g)
+I denne oppgaven skal du vise at du kjenner til hva som skjer når vi bruker funksjonskall i argumentet til et annet funksjonskall.
+
+def funk1(a):
+    return a + 1
+def funk2(b):
+    return 2 * b
+def funk3(c):
+    return c + 2
+def funk4(a):
+    return 4
+def funk5(b):
+    return b - 1
+def funk6(c):
+    return c
+i=1
+k=3
+a = funk1( funk2(i+1) + funk3(k) - 1 )
+b = funk4( funk5( funk6(2) ) + a )
+c = funk4( funk1(a+b) + funk2(funk3(funk6(1))) + funk5(b*a) - funk6(b) )
+
+print(str(a)+','+str(b)+','+str(c))
+
+Hva blir skrevet ut av koden i bildet?
+Skriv svaret her (nøyaktig slik det skrives ut på terminalen): 9,4,4
+
+
+Oppgave 2i)
+def kalkulator(operasjoner):    # Operasjoner må ha type str
+    tall = 0
+    for operasjon in operasjoner:
+        if operasjon == "d":
+            tall = tall * 2
+        elif operasjon == "1":
+            tall = tall + 1
+        elif operasjon == "2":
+            tall = tall + 2
+        elif operasjon == "3":
+            tall = tall + 3
+        elif operasjon == "4":
+            tall = tall + 4
+        elif operasjon == "5":
+            tall = tall + 5
+        elif operasjon == "6":
+            tall = tall + 6
+        elif operasjon == "7":
+            tall = tall + 7
+        elif operasjon == "8":
+            tall = tall + 8
+        else:
+            tall = tall
+    return tall
+
+Hva blir returnert hvis vi kaller denne funksjonen med argumentet "1d7d8"?
+kalkulator("1d7d8") returnerer verdien: 26
+
+
+Oppgave 2j)
+Hvor mange Ukedag-objekter eksisterer (kan man få tak i) etter at koden på bildet har kjørt?
+class Ukedag:
+    def __init__(self, dag):
+        self.dag = dag
+torsdag = Ukedag(4)
+imorgen = Ukedag(4+1)
+fredag = imorgen
+helg = Ukedag(6)
+fredag = None
+helg = None
+lordag = helg
+
+Skriv svaret her: 2
+
+
+Oppgave 2k)
+Hvor mange bil-objekter eksisterer (kan man få tak i) etter at koden på bildet har kjørt?
+class Bil:
+    def __init__(self, merke):
+        self._merke = merke
+opel = Bil("Opel")
+toyota = Bil("Toyota")
+jaguar = Bil("Jaguar")
+jaguar = opel
+open = toyota
+toyota = None
+elbil = opel
+
+Skriv svaret her: 2
+
+
+Oppgave 2l)
+Samme def kalkulator(operasjoner) funksjon som i oppge 2i.
+Finn det korteste (lengden av strengen) argumentet til funksjonen kalkulator slik at den returnerer verdien 23.
+Skriv verdien til argumentet her: 8d7
+
+
+
+Oppgave 3a)
+Skriv en funksjon fridager(julaften) som returnerer antall fridager fra og med 25. desember, til og med 31. desember. Det er alltid fri lørdag og søndag, dessuten 25. og 26. desember. Om noen av disse faller på samme dag blir det færre enn 4 dager fri. Julaften er 24. desember.
+Parameteren julaften skal inneholde en streng som angir hvilken ukedag julaften faller på. Det vil si at kallet fridager("sondag") skal evaluere til 4, mens fridager("fredag") skal evaluere til 2.
+Skriv funksjonen her:
+
+
+Oppgave 3b)
+Skriv en funksjon beOmNavn(navneliste) med en liste av strenger som parameter. Funksjonen skal be bruker oppgi navn inntil navnet som oppgis finnes i navneliste, da returneres dette navnet. Navnelisten skal ikke skrives ut. Du kan anta at alle navn i listen og som oppgis av bruker kun inneholder små bokstaver (lowercase).
+Skriv ditt svar her
+
+
+Oppgave 3c)
+Funksjonen stringFraInt i koden nedenfor returnerer en tekst med 6 tegn ved å fylle inn '0'-tegn foran heltallet i parameteren tall.
+Skriv en ny funksjon intTilString(tall, antallSiffer), som returnerer en tekst med en lengde som er gitt av parameteren antallSiffer. Dersom lengden (antall siffer) av parameteren tall er mindre enn antallSiffer, så skal funksjonen fylle på '0'-tegn foran heltallet i parameteren tall, slik som det er gjort i stringFraInt.
+
+def stringFraInt(tall):
+    tall=str(tall)
+    returtall = tall
+    if len(tall) == 1:
+        returtall = "00000"+tall
+    elif len(tall) == 2:
+        returtall = "0000"+tall
+    elif len(tall) == 3:
+        returtall = "000"+tall
+    elif len(tall) == 4:
+        returtall = "00"+tall
+    elif len(tall) == 5:
+        returtall = "0"+tall
+    return returtall
+
+def intTilString(tall, antallSiffer): # Svaret skal være hele dene funksjonen
+assert stringFraInt(87) == "000087"
+assert intTilString(87, 4) == "0087"
+assert intTilString(87, 2) == "87"
+assert intTilString(87, 1) == "87"
+assert intTilString(1, 11) == "00000000001"
+assert intTilString(0,2) == "00"
+assert intTilString(0,0) == "0"
+print("alt ok")
+
+Skriv ditt svar her:
+
+
+Oppgave 3d)
+Mange irriterer seg over overdrevet bruk av utropstegn. Skriv en funksjon dempDeg (tekst) som returnerer en kopi av parameteren tekst, men der alle utropstegn ("!") bakerst i teksten er fjernet (om det er noen) og erstattet av et punktum (".").
+For eksempel skal kallet dempDeg("Hei!!!") returnere strengen "Hei.", mens kallet dempDeg(" Hei du! Og du.") skal returnere strengen " Hei du! Og du.".
+Skriv ditt svar her:
+
+
+Oppgave 4)
+Deltakelse på undervisningsaktiviteter ved Ifi
+Et vanlig problem for mange emner, er at oppmøte til grupper og aktiviteter endrer seg i løpet av semesteret. Noen grupper får flere studenter enn planlagt, mens andre grupper får færre. I denne oppgaven skal vi lage et system som hjelper undervisere med å undersøke oppmøtet i de ulike gruppene og aktivitetene for emnene vi har på Ifi. På den måten kan undervisningen planlegges bedre.
+Gjennom hele oppgaven står du fritt til å innføre egne metoder, variabler og eventuelt
+klasser, der du selv ser behovet for dette slik du løser oppgaven.
+
+
+Oppgave 4a)
+Skriv klassen Student. Ved opprettelse av objekter av klassen, skal det opprettes en tom liste over emner studenten følger. Konstruktøren skal ta inn studentens brukernavn, og lagre dette i en instansvariabel.
+Du skal skrive én metode i klassen, hentBrukernavn(self) som skal returnere studentens
+brukernavn.
+
+
+Oppgave 4b)
+Du skal også skrive klassen Emne. Ved opprettelse av objekter av klassen, skal en tom liste over aktiviteter (grupper o.a.) tilknyttet emnet opprettes. Konstruktøren skal ta inn kode på emnet, og lagre dette i en instansvariabel.
+Klassen skal ha én metode. Denne metoden skal legge en aktivitet til listen over aktiviteter.
+
+
+Oppgave 4c)
+Du skal opprette en klasse Dato. Denne klassen skal ta tre heltall som argumenter i sin konstruktør: dag , maaned og aar . År skal representeres ved to siffer; 2020 vil for eksempel representeres som 20. Du kan anta at programmet kun skal brukes etter år 2000 og før år 2100. Klassen skal ha følgende metoder:
+- absoluttDato(self) , som returnerer datoen som ett heltall, der rekkefølgen blir år, måned og dag. Dette sikrer at man alltid kan hente ut datoer kronologisk. For eksempel vil 19. november 2020 representeres som 201119. Merk at du kan trenge å legge til ekstra nuller for å få tallet på seks siffer.
+- __str__(self), som returnerer datoen på et pent og leselig format, som en streng. 19/11-20 vil kunne returneres som “19. november 2020” . Du kan anta at programmet kun brukes i høstsemesteret, altså trengs bare september-desember.
+
+
+Oppgave 4d)
+Klassen Aktivitet representerer en aktivitet knyttet til et emne. Dette er typisk en gruppetime eller lab-øvelse.
+Du skal skrive klassen Aktivitet. Ved opprettelse skal konstruktøren ta følgende parametre:
+- emne : et objekt av klassen Emne, som sier hvilket emne aktiviteten er tilknyttet.
+- dato : et objekt av klassen Dato, riktig dato for aktiviteten.
+- aktivitetsnummer : et heltall som indikerer hvilket nummer aktiviteten har.
+Konstruktøren skal også opprette to tomme lister, den ene for studenter som er registrert på aktiviteten i StudentWeb, og den andre for studenter som faktisk har møtt opp til denne aktiviteten (oppmøteregistrering).
+Klassen skal inneholde følgende metoder:
+- leggTilRegistrertStudent(self, student) : legger et student-objekt til listen over registrerte studenter.
+- registrerOppmote(self, student) : studenten har møtt opp til aktiviteten, og objektet legges til listen for oppmøtte studenter.
+- skrivUtOppmotteStudenter(self) : skriver ut navnet på alle studenter som har møtt til aktiviteten.
+- absoluttDato(self) : returnerer dato for aktivitet på absolutt-format, som beskrevet i Dato-klassen.
+- oppmote(self) : returnerer antall oppmøtte studenter til aktiviteten.
+- __str__(self) : returnerer en streng som inneholder aktivitetens emne, nummer og antall oppmøtte til aktiviteten.
+
+
+Oppgave 4e)
+Lag en klasse Undervisningsadministrasjon. Klassen skal ikke ta noen argumenter til sin konstruktør. Ved opprettelse av objekter, skal følgende instansvariabler opprettes:
+- emner : en ordbok, der en streng med emnekode vil være nøkkel, og objekter av Emne skal være verdi.
+- datoer : en ordbok, dato på absolutt format (som er lik returverdien til absoluttDato ) skal være nøkkel, mens Dato-objekter er innholdsverdi.
+- studenter : en ordbok over studenter. Brukernavn er nøkkel, Student-objekt er verdi.
+
+
+Oppgave 4f)
+Lag en metode i Undervisningsadministrasjon som leser inn filer og oppretter emner og deres aktiviteter. Merk at det kun skal være ett dato-objekt for hver dato . Det skal også kun være ett objekt per emne . Filen som skal leses vil være på følgende format (eksempel):
+IN1000 Gruppe1 20 09 18
+IN1000 Gruppe2 20 09 22
+IN1000 Gruppe3 20 10 08
+IN5090 Lab1 21 01 12
+
+Obs: husk at hvert emne kun skal representeres som ett objekt, og at aktiviteter legges til dette objektet. Objektene legges til sine respektive ordbøker.
+
+
+Oppgave 4g)
+Lag en metode i Undervisningsadministrasjon som leser informasjon fra fil om studenter, deres emner og hvilke aktiviteter de er registrert for. Dataene du leser, skal legges inn i datastrukturen, og Student-objekter skal opprettes for hver enkelt student. Et eksempel kan
+være som følger:
+henrihlo IN1000 Gruppe1
+henrihlo IN1010 Gruppe4
+siriamj IN2010 Gruppe3
+siriamj IN2010 Lab1
+Du kan anta at emnet eksisterer i ordboken over emner, og at gruppe/aktivitet eksisterer i emnenes lister over aktiviteter.
+
+
+Oppgave 4h)
+Skriv en metode i Undervisningsadministrasjon skrivGrupperMedLavtOppmoete(self, antall) som skriver ut en liste over de gruppene som har hatt færre enn et antall oppmøtte studenter gitt som parameter.
+
+
+Oppgave 5)
+Du har kommet over ei liste over synonymer (ord som betyr omtrent det samme). Lista er ei liste av lister, hvor ei av synonymlistene f.eks. kan være:
+["godt", "bra", "flott", "ok", "fint", "vel"]
+Du ønsker å lage en papirversjon av synonymordboka slik at man kan slå opp på et gitt ord for å finne alle ordets synonymer. Du skal lage en funksjon som returnerer ei Python-ordbok (dict) som hjelper deg i dette arbeidet:
+
+lagSynonymordbok(listeAvLister)
+
+Vær oppmerksom på homonymer. Det er ord som skrives likt, men betyr forskjellige ting. F.eks. kan ordet gift både være en relasjon mellom to personer, eller betegne noe som er farlig å få i seg. For å komme rundt dette problemet lages synonymorboka slik at den inneholder ei synonymliste for hver betydning av et gitt ord der ordet er et homonym. Dette betyr at ordlista har en streng som nøkkel og ei liste av lister av strenger som verdi. Et eksempel:
+synonymordbok["blad"] = [ ["løv"], ["magasin"]]
+fordi ordet blad både kan være en del av en plante, men også noe man kan kjøpe i en bladkiosk.
+Funksjonaliteten framgår forøvrig av testprogrammet nedenfor.
+synonymer = [
+    ["a", "e", "i", "o", "u"], \
+    ["HOM", "c", "d"], \
+    ["y", "HOM"], \
+    ["k", "l", "m", "n", "p", "q"], \
+    ["x"]
+]
+# ordet "HOM" (homonym) har i én betydning synonymene "c" og "d",
+# i en annen betydning har "HOM" synonymet "y"
+
+synonymorbok = lagSynonymordbok(synonymer)
+
+assert synonymorbok["e"] == [ ["a", "i", "o", "u"] ]
+assert synonymorbok["a"] == [ ["e", "i", "o", "u"] ]
+assert synonymorbok["u"] == [ ["a", "e", "i", "o"] ]
+assert synonymorbok["c"] == [ ["HOM", "d"] ]
+assert synonymorbok["HOM"] == [ ["c", "d"], ["y"] ]
+assert synonymorbok["x"] == [ [] ]
+print("Alt ok")
+
+Skriv hele funksjonen lagSynonymordbok:

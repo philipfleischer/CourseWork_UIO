@@ -1,0 +1,232 @@
+Oppgave 1a)
+class Klasse:
+    def __init__(self, tall):
+        self._tall = tall
+
+x = Klasse(3)
+y = Klasse(4)
+z = Klasse()
+u = x
+v = u
+u = None
+Hvor mange Klasse-objekter refereres fra variabler i koden på bildet (etter at alle linjene er blittutført)?
+Svar:
+
+
+Oppgave 1b)
+Hva blir resultatet av å kjøre denne koden?
+
+a=1
+b=2
+c=3
+listeA = [a,b,c]
+listeB = [1,2,3]
+listeC = listeA
+listeA.append(5)
+listeC.append(6)
+print(listeC)
+
+Alternativer:
+- 4 skrives ut
+- 5 skrives ut
+- IndexError: list index out of range
+- 6 skrives ut
+
+Svar:
+
+
+Oppgave 1d)
+# Ordbok med statene i USA:
+ordbok = {
+    "AL":"Alabama", "AK":"Alaska", ...
+}
+liste = []
+for a in ordbok:
+    liste.append(a)
+i=0
+for b in liste:
+    if ordbok[b] == "Alabama":
+        print(liste[i])
+    i+=1
+
+Hva skrives ut på terminalen av denne koden? Svar her (nøyaktig de tegnene som skrives ut):
+
+
+Oppgave 1f)
+s="
+if True or not False:
+    s += "a"
+    if True and not False:
+        s += "b"
+    if False or not False:
+        s += "c"
+        s += "d"
+elif True:
+    s += "e"
+else:
+    s += "f"
+a = False
+b = not True
+if a or b:
+    if a :
+        s += "g"
+print(s)
+
+Skriv nøyaktig de tegnene som blir skrevet ut i svarfeltet:
+
+
+Oppgave 1g)
+class Klasse:
+    def __init__(self, a, b):
+        self._a = b
+        self._b = a
+    def hent_a(self):
+        return self._a
+    def hent_b(self):
+        return self._b
+
+c = Klasse("a", "b")
+print(c.hent_a() + c.hent_b())
+
+Skriv nøyaktig de tegnene som skrives ut på terminalen i svarfeltet:
+
+
+
+Oppgave 2a)
+class Klasse:
+    def __init__(self, tall):
+        self._tall = tall
+    def sett_tall(self, tall):
+        self._tall = tall
+    def skriv_tall(self):
+        print(self._tall)
+
+x = Klasse(3)
+y = Klasse(4)
+z = x
+x = Klasse(5)
+u = z
+z.sett_tall(2)
+u.skriv_tall()
+
+Hva skrives ut på terminalen av koden?
+
+
+Oppgave 2g)
+class Klasse:
+    def __init__(self, tall):
+        self._a = tall
+        self._b = 5
+    def legg_sammen (self):
+        c = self._a + self._b
+        return c
+    def __str__(self):
+        return "a: "+str(self._a) + "; b: "+str(self._b)
+
+d = Klasse(3)
+e = str(d)
+
+Gitt koden, velg den beskrivelsen som passer best for hvert uttrykk.
+Av (tall, c, e, self_a) og (parameter, instansvariabel, global variabel, lokal variabel).
+
+
+Oppgave 2h)
+
+Velg for disse: int(input("Alder:")), print(navn), for i in range(4):, "713 + 56".
+En av disse: Ikke et gyldig uttrykk, Uttrykk som evaluerer til int, Uttrykk som evaluerer til string.
+
+
+Oppgave 3a)
+Et land har følgende regler for reisekarantene:
+Dersom en person er vaksinert, trenger personen ikke å gå i karantene (0 dager i karantene)
+Dersom en uvaksinert person har vært i et land som har fargekode rød eller oransje, skal peresonen 10 dager i karantene.
+Dersom en uvaksinert person har vært i et land som har fargekode grønn, skal personen 3 dager i karantene.
+Skriv en funksjon karantene(vaksinert, farge) som returner antall dager (datatype int) en person må i karantene i henhold til reglene over, hvor parameteren vaksinert er enten True eller False (datatype bool) og parameteren farge er enten "roed","oransje" eller "groenn" (datatype str).
+Altså skal for eksempel kallet karantene(True,"roed") returnere 0, mens kallet karantene(False, "oransje") skal returnere 10. Skriv ditt svar her
+
+
+
+Oppgave 3b)
+Skriv en funksjon tell_grader(fag, bsc, msc) som tar inn tre parametre av datatypen tekst (str) og sjekker om en Bsc-grad og/eller en Msc-grad er innen et bestemt fag. Dersom parameteren fag har samme verdi som både parametrene bsc og msc, skal funksjonen returnere 2. Dersom parameteren fag har samme verdi som én av parametrene bsc eller msc skal funksjonen returnere 1. Dersom parameteren fag hverken er lik verdien til parametrene bsc eller msc, skal funksjonen returnere 0.
+For eksempel skal kallet tell_grader("informatikk","informatikk","informatikk") returnere 2, mens kallet tell_grader("historie","informatikk","informatikk") skal returnere 0.
+Skriv ditt svar her
+
+
+
+Oppgave 3c)
+Skriv en funksjon fjern_vokaler(setning, vokal_liste) som tar inn to parametre - en setning (datatype str) og en liste med vokaler (datatype list, hvor hvert element er en str av lengde 1).
+Funksjonen skal returnere en kopi av teksten setning hvor alle vokaler fra vokal_liste er fjernet fra teksten. Du kan anta at både setning og vokal_liste kun inneholder små bokstaver.
+For eksempel skal kallet fjern_vokaler("ha det fint", ["a","e","i","o","u"]) returnere teksten "h dt fnt"
+Skriv ditt svar her
+
+
+
+Oppgave 3d)
+Skriv en funksjon summer_rabatt(vareliste, forpris, nypris) som tar som argument en liste med varenavn (vareliste), en ordbok med varenavn som nøkler og deres førpris som verdier (forpris), samt en en ordbok med varenavn som nøkler og deres nypris som verdier (nypris).
+Funksjonen skal regne ut hvor mye rabatt en kunde har fått i sum dersom kunden har kjøpt varene i vareliste (én av hvert element i lista). Rabatten for en gitt vare er forskjellen mellom førpris og nypris for det gitte varenavnet, hvor disse prisene ligger i hver sin ordbok forpris og nypris. Du kan anta at alle varenavn i vareliste finnes som nøkler i både ordboken forpris og nypris, og du kan anta at nypris alltid er lavere eller lik førpris.
+For eksempel skal kallet summer_rabatt(["laptop", "ryggsekk"], {"laptop":5000,
+"ryggsekk":900}, {"laptop":4000, "ryggsekk":600}) returnere 1300.
+Skriv ditt svar her
+
+
+
+Oppgave 4)
+Del 4: Julegavefikseren: En kombinert ønskeliste og juleferiekalender
+
+Du kan anta i programmet du skriver at input (argumenter til metodene dine eller input fra fil/bruker) er lovlige verdier av riktig type, du trenger altså ikke sjekke disse om det ikke nevnes spesielt.
+
+Dolly Duck har tenkt ut en løsning på to problemer: Hun er lei av å få julegaver hun ikke ønsker seg og som bare står og støver ned – og hun har ingenting å gjøre i juleferien etter julaften. Løsningen hennes er en app som du skal få utvikle – der hun kan registrere ønsker om opplevelser og aktiviteter i en ønskeliste, og de som vil gi henne gaver kan velge et ønske fra ønskelisten som så legges i en «juleferiekalender».
+
+I juleferiekalenderen kan hun åpne en ny gave hver dag, fra og med 25. desember og så lenge juleferien varer. «Gavene» som ligger i kalenderen er bare en tekst som beskriver opplevelsen eller aktiviteten, sammen med navnet på giveren – men da vet hun jo hvem hun kan kontakte. En vanlig julekalender kan åpnes hver dag fra 1. til 24. desember – men her skal vi altså lage en kalender som brukes etter julaften i stedet.
+
+Julegavefikseren er bygget opp av 5 klasser som du skal skrive:
+- En klasse Onskeliste som inneholder ønskelisten (en liste med Onske-objekter) og metoder for å legge inn ønsker, velge et ønske å oppfylle, og for å hente ut en liste med ønsker.
+- En klasse Onske med metoder for å sjekke om ønsket passer for en giver eller ikke, for å velge et ønske og for returnere ønsket som en string.
+- En klasse Juleferiekalender med gaver for hver dag i juleferien, fra og med 25. desember og et valgfritt antall dager fremover (men aldri mer enn 31 dager). Klassen har metoder for å legge til en ny gave, hente gaven for en bestemt dag, og lese av hvor mange dager ferie juleferiekalenderen er laget for.
+- En klasse Gave som inneholder beskrivelsen av gaven og hvem den er fra. Denne informasjonen kan hentes ut som en streng.
+- Den siste klassen er Julegavefikseren som tar antall dager i juleferien som parameter til konstruktøren. Klassen har metoder for å lese inn Dollys ønsker i ønskelisten fra fil, for å velge et ønske å oppfylle og legge som en gave i juleferiekalenderen (for givere) og for å åpne en ny dag i kalenderen (for Dolly).
+
+Du trenger ikke skrive noe hovedprogram – dette vil lese inn alle ønsker fra fil og ha et brukergrensesnitt der en som vil gi Dolly en gave oppgir navnet sitt og velger et ønske å oppfylle (og hvilken dag det skal gis), og der Dolly senere (når ferien starter) kan «åpne» en ny dag i kalenderen for hver dag i ferien.
+
+Pass på å bruke metoder du allerede har skrevet i andre klasser der det er naturlig. Gave-objekter skal kun refereres til og brukes i Juleferiekalenderklassen, og Onske-objekter skal kun refereres til og brukes i Onskeliste-klassen. Instansvariabler skal aldri aksesseres direkte fra utsiden av klassen de hører til.
+
+Oppgave 4a)
+Skriv klassen Onske. Klassen har instansvariabler beskrivelse, antall (om hun gjerne vil ha ønsket oppfylt flere ganger) og minimumspris (den billigste måten å oppfylle ønsket på). Initialverdiene oppgis i parametere til konstruktøren. Klassen har metodene (som du skal skrive):
+- passer med parameter som angir maksimumspris. Denne metoden sjekker om et ønske er for dyrt for giveren (minimumsprisen til gaven er høyere enn maksimumskostnaden giveren kan akseptere) eller om ønsket er «brukt opp» (dvs antall = 0)
+- valgt som kalles når en giver har valgt ønsket. Denne oppdaterer antall og returnerer beskrivelsen
+- __str__ som returnerer beskrivelse og minimumspris
+
+Oppgave 4b)
+Skriv klassen Onskeliste med metoder (som du skal skrive):
+- nytt_onske med parametere etter behov, oppretter et nytt onske og legger det til onskelisten
+- hent_onsker som tar maksimumspris (det meste en giver har råd til) som parameter og returnerer en liste med tekststrenger, der hver streng representerer et ønske i ønskelisten. For valgbare ønsker (som kan oppfylles innenfor giverens maksimumspris, og som ikke er «brukt opp») skal strengen være en representasjon av objektet med beskrivelse og pris, mens for ønsker som ikke oppfyller kravene skal det bare stå «Ikke valgbart onske».
+- onske_oppfylles kalles når en giver har valgt hvilket ønske hen vil oppfylle. Metoden tar som parameter hvilket ønske som er valgt (et heltall), oppdaterer ønsket (at det er «brukt» en gang), og returnerer beskrivelsen av ønsket. Heltallet kan for eksempel være indeks til listen av ønsker.
+
+Oppgave 4c)
+Skriv klassen Gave. Konstruktøren tar parametere med initialverdier til to instansvariabler: beskrivelse og giver (hvem gaven er fra). Klassen har dessuten en metode som returnerer en streng med beskrivelse og giver (som du også skal skrive)
+
+Oppgave 4d)
+Skriv klassen Juleferiekalender med en konstruktør som tar antall dager i kalenderen som parameter og oppretter en ordbok der dagnummer er nøkkel og verdiene foreløpig er None.
+Dagnummer er et tall som angir datoen i desember eller januar: Fra 25 (siden kalenderen alltid starter 25. desember) til siste dag i ferien (juleferien varer max 31 dager dvs til og med dagnummer 24, men kan også være kortere enn dette). Tallet 28 representerer altså 28.desember, mens tallet 8 representerer 8.januar. Klassen har metodene (som du skal skrive):
+- ny_gave som oppretter en ny Gave og legger den på en dag i juleferiekalenderen. Parametere er beskrivelse av gaven, giver (hvem gir gaven) og dagen den skal plasseres på (heltallet dagnummer). Du kan anta at den oppgitte dagen er gyldig og trenger ikke sjekke den (selv om dette skulle bety at du overskriver en eksisterende gave).
+- hent_dagens_gave som returnerer en tekst som skal skrives ut når gaven på en bestemt dag (angitt av parameter dagnummer) åpnes. Teksten skal starte med datoen på formen dagnummer.månedsnavn (for eksempel 25. desember eller 1. januar). Hvis det ikke ligger noen gave i kalenderen for denne dagen skal teksten opplyse om det, ellers skal den inneholde beskrivelsen av gaven og hvem den er fra.
+- hent_ant_dager returnerer antall dager i denne kalenderen
+
+
+Oppgave 4e)
+Skriv klassen Julegavefikser med en konstruktør som tar antall dager i kalenderen som parameter, og oppretter en Juleferiekalender og en Onskeliste. Konstruktøren skal også initialisere en instansvariabel neste_dag som holder rede på hvilken dag i julegavekalenderen som skal åpnes neste gang. Skriv også metoden:
+- les_onsker_fra_fil. Metoden tar en parameter filnavn, og leser ett og ett ønske fra filen som har følgende format på hver linje: beskrivelse; antall; minimumspris For hver linje opprettes et ønske som legges til i ønskelisten.
+
+
+Oppgave 4f)
+Utvid klassen Julegavefikser med metodene (som du skal skrive):
+- velg_gave leser inn maksimumspris fra en bruker som vil gi en gave, og skriver ut på terminalen en nummerert oversikt over alle ønskene tilpasset denne. Brukeren kan deretter velge et ønske å oppfylle ved å oppgi nummeret, dette registreres i ønskelisten som gitt én gang, og beskrivelsen tas vare på. Til slutt spørres brukeren om hvilken dag i kalenderen gaven skal «legges» i, og en ny gave som oppfyller det valgte ønsket legges der. Du trenger ikke sjekke om det allerede finnes en gave på angitt dag – det er greit at denne i så fall overskrives.
+- ny_dag kalles når Dolly vil åpne neste dag i kalenderen. Metoden returnerer informasjon om gaven på denne dagen i kalenderen (om det er noen der) og oppdaterer instansvariabelen som holder rede på hvilken dag i kalenderen som skal åpnes neste gang. Husk at etter 31. desember (dagnummer 31) kommer 1. januar (dagnummer 1).
+
+
+
+Oppgave 5)
+Definer en funksjon sjekk_reise(reise) som tar inn en nøstet liste reise, hvor hvert element i denne lista igjen er en liste med to elementer av datatype str (et par av reiseopprinnelse og reisemål). Funksjonen skal returnere True dersom reise er en gyldig reiserute, og False ellers.
+Reiseruten er gyldig når hvert reisemål (andre element i en indre liste) er likt reiseopprinnelsen (første element) i den etterfølgende indre listen. Du kan anta at alle elementene i den ytre listen er en indre liste av lengde 2.
+For eksempel skal kallet sjekk_reise([["Spania", "Frankrike"], ["Frankrike", "Norge"]]) returnere True da den beskriver reisen Spania -> Frankrike -> Norge. Kallet sjekk_reise([["Russland", "Tyskland"], ["Tyskland","Sverige"], ["Norge", "Belgia"]]) skal derimot returnere False, fordi andre etappe ender i Sverige mens neste etappe starter i Norge. Merk at også listen [["Russland", "Tyskland"], ["Norge", "Tyskland"]] skal returnere False, fordi den andre etappen skulle ha startet i Tyskland (i stedet slutter den der, og er dermed ikke gyldig).
+Skriv ditt svar her
