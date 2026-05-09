@@ -1,0 +1,269 @@
+Oppgave 1a)
+Svar: 3
+
+1b)
+Svar: 15
+
+1c)
+Svar: 2
+
+1d)
+Svar: 10
+
+1e)
+Svar: 6
+
+1f)
+Svar: 3
+
+Oppgave 2a)
+Svar: 4
+
+2b)
+Svar: 4
+
+2c)
+Svar: 6
+
+2d)
+Svar: 6
+
+
+Oppgave 3a)
+
+def badmington(per_vil, palle_vil, espen_vil):
+    return per_vil + palle_vil + espen_vil == 2
+
+def main():
+    badmington(True, True, False) # -> True
+    badmington(True, True, True) # -> False
+
+if __name__ == "__main__":
+    main()
+
+3b)
+
+def heie(tabellplass_ordbok):
+    if tabellplass_ordbok["Brann"] <= 3:
+    return "Brann"
+
+    for lag, plass in tabellplass_ordbok.items():
+        if plass == 1:
+            return lag
+
+def main():
+    heie({"Rosenborg":4, "Odd":1, "Molde":3, "Brann":2}) # -> "Brann"
+    heie({"Rosenborg":2, "Odd":1, "Molde":3, "Brann":4}) # -> "Odd"
+
+
+3c)
+
+def bordsetting(introverte, ekstroverte):
+    sitting = []
+    for person in range(len(introverte)):
+        setting.append(introverte[person])
+        setting.append(ekstroverte[person])
+
+    return sitting
+
+
+
+def main():
+    print(bordsetting(["Per", "Palle", "Espen"], ["Putti", "Plutti", "Pott]))
+    # -> ["Per", "Putti", "Palle", "Plutti", "Espen", "Pott"]
+
+if __name__ == "__main__":
+    main()
+
+3d)
+
+
+def lag_interessegrupper(personers_interesse):
+    ordbok = {}
+    for person, interesse in personers_interesse.items():
+        if interesse not in ordbok:
+            ordbok[interesse] = []
+        ordbok[interesse].append(person)
+    return ordbok
+
+def main():
+    print(lag_interessegrupper({"Per":"Mat", "Palle":"Film", "Espen":"Mat}))
+    # -> {"Mat": ["Per", "Espen"], "Film":["Palle"]}
+
+if __name__ == "__main__":
+    main()
+
+
+
+Oppgave 4)
+
+class Gruppe:
+    def __init__(self, krav):
+        self._krav = krav
+        self._medlemmer = []
+
+    def legg_til_personer(self, navnliste):
+        for pers in navnliste:
+            self._medlemmer.append(pers)
+
+    def hent_personer(self):
+        return self._medlemmer
+
+    def hent_krav(self):
+        return self._krav
+
+class Rom:
+    def __init__(self, romnummer, ant_senger, fasiliteter):
+        self._romnummer = romnummer
+        self._ant_senger = ant_senger
+        self._fasiliteter = fasiliteter
+        self._gjester = []
+
+    def reserver(self, navn):
+        self._gjester = navn
+
+    def hent_ant_senger(self):
+        return self._ant_senger
+
+    def passer(self, krav):
+        for k in krav:
+            if k not in self._fasiliteter:
+                return False
+        return True
+
+    def __str__(self):
+        return f"Romnummer: {self._romnummer} har {self._ant_senger} antall senger. Her er rommets fasiliteter: {self._fasiliteter}"
+
+
+class Hotell:
+    def __init__(self, navn):
+        self._navn = navn
+        self._rom = self._les_fil("hotellnavn.txt")
+        self._ordbok = {}
+
+    def _les_fil(self, h_navn):
+        with open(h_navn, "r") as fil:
+            for rom in fil:
+                deler = rom.strip().split()
+                romnummer = deler[0]
+                ant_senger = deler[1]
+                fasiliteter = []
+                for i in range(2, len(deler)):
+                    fasiliteter.append(i)
+                self._ordbok[romnummer] = Rom(romnummer, ant_senger, fasiliteter)
+
+    def reserver_rom(self, romnummer, navn):
+        if romnummer in self._ordbok:
+            self._ordbok[romnummer].reserver(navn)
+
+    def finn_passende_rom(self, krav):
+        passer_liste = []
+        for rom in self._ordbok.values():
+            if rom.passer(krav):
+                passer_liste.append(rom)
+        return passer_liste
+
+
+class Reservasjonssystem:
+    def __init__(self, hotellnavn):
+        self._hotellnavn = hotellnavn
+        self._hoteller = self._opprett_hotell()
+
+    def _opprett_hotell(self):
+        for navn in self._hotellnavn:
+            self._hoteller[navn] = Hotell(navn)
+
+    def reserver_rom_i_hotell(self, hotellnavn, romnummer, gjester):
+        if hotellnavn in self._hoteller:
+            self._hoteller[hotellnavn].reserver_rom(romnummer, gjester)
+
+    def _finn_alle_passende_rom(self, krav):
+        hotell_rom_passer = {}
+        for navn, hotell in self._hoteller.items():
+            rom_liste = hotell.finn_passende_rom(krav)
+            if len(rom_liste) > 0:
+                hotell_rom_passer[navn] = rom_liste
+        return hotell_rom_passer
+
+    def gruppe_reservasjon(self, gruppe):
+        krav = gruppe.hent_krav()
+        personer = gruppe.hent_personer()
+
+        alle_rom = self._finn_alle_passende_rom(krav)
+
+        if len(alle_rom) == 0:
+            return ["Ingen passende rom"]
+
+        bekreftelse = []
+        neste_gjest = 0
+
+        for hotellnavn in alle_rom:
+            for rom in alle_rom[hotellnavn]:
+                gjester = []
+
+                # Fyll rommet med så mange gjester som går
+
+                while neste_gjest < len(personer) and len(gjester) < rom.hent_ant_senger():
+                    gjester.append(personer[neste_gjest])
+                    neste_gjest += 1
+
+                rom.reserver(gjester)
+
+                bekreftelse.append(hotellnavn + ": " + str(rom))
+
+                if neste_gjest == len(personer):
+                    return bekreftelse
+
+        mangler = len(personer) - neste_gjest
+
+        if mangler > 0:
+            bekreftelse.append("NB: Mangler rom til " + str(mangler) + "personer")
+
+        return bekreftelse
+
+Oppgave 4b)
+Grensesnittet til reservasjonessystem er:
+__init__(hotellnavn)
+    Oppretter Reservasjonssystem for hotellene i hotellnavn listen.
+
+reserver_rom_i_hotell(hotellnavn, rom_nr, gjester)
+    Reserverer et bestemt rom på et bestemt hotell for en eller flere gjester.
+
+gruppe_reservasjon(gruppe)
+    reserverer passende rom til så mange som mulig i en gruppe.
+    returnerer en bekreftelse som en liste med strenger.
+
+
+Oppgave 5a)
+
+def stigespill(terningkast, stiger):
+    posisjon = 0
+
+    for kast in terningkast:
+        posisjon += kast
+        if posisjon in stiger:
+            posisjon = stiger[posisjon]
+    return posisjon
+
+
+def main():
+    stigespill([5,4,2,2], {5:12, 18:7}) # -> 9
+
+if __name__ == "__main__":
+    main()
+
+
+Oppgave 5b)
+
+def hvilke_tre_kast(slutt_rute, stiger):
+    mulige_trekk = []
+    for kast1 in range(1, 7):
+        for kast2 in range(1, 7):
+            for kast3 in range(1, 7):
+                if stigespill([kast1, kast2, kast3], stiger) == slutt_rute:
+                    mulige_trekk.append([kast1, kast2, kast3])
+    return mulige_trekk
+
+def main():
+    print(hvilke_tre_kast(5, {3:15, 17:4}))
+    # -> [[1, 1, 3], [1, 3, 1], [2, 2, 1], [3, 2, 1]]
