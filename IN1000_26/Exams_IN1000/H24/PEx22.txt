@@ -1,0 +1,246 @@
+1a)
+3
+
+1b)
+6
+
+1d)
+AL
+
+1f)
+abcd
+
+1g)
+ba
+
+2a)
+2
+
+2g)
+tall    = parameter,
+c       = lokal variabel,
+e       = global variabel,
+self_a  = instansvariabel
+
+2h)
+int(input("Alder:)) = Uttrykk som evaluerer til int
+print(navn)         = Ikke et gydlig uttrykk
+for i in range(4):  = Ikke et gyldig uttrykk
+"713 + 56"          = Uttrykk som evaluerer til string
+
+3a)
+
+def karantene(vaksinert, farge):
+    if vaksinert:
+        return 0
+    if farge = "groenn":
+        return 3
+    return 10
+
+def main():
+    print(karantene(True, "roed"))      # -> 0
+    print(karantene(False, "oransje"))  # -> 10
+
+if __name__ = "__main__":
+    main()
+
+
+3b)
+
+def tell_grader(fag, bsc, msc):
+    total = 0
+    if fag == bsc:
+        total += 1
+    if fag == msc:
+        total += 1
+    return total
+
+def main():
+    print(tell_grader("informatikk", "informatikk", "informatikk")) # -> 2
+    print(tell_grader("historie", "informatikk", "informatikk")) # -> 0
+
+if __name__ == "__main__":
+    main()
+
+
+3c)
+def fjern_vokaler(setning, vokal_liste):
+    ny_setning = ""
+    for tegn in setning:
+        if tegn not in vokal_liste:
+            ny_setning += tegn
+    return ny_setning
+
+def main():
+    print(fjern_vokaler("ha det fint", ["a", "e", "i", "o", "u"])) # -> "h dt fnt"
+
+if __name__ == "__main__":
+    main()
+
+3d)
+
+def summer_rabatt(vareliste, forpris, nypris):
+    total_rabatt = 0
+    for vare in vareliste:
+        if vare in forpris and vare in nypris:
+            total_rabatt += forpris[vare] - nypris[vare]
+    return total_rabatt
+
+def main():
+    print(summer_rabatt(["laptop", "ryggsekk"], {"laptop":5000, "ryggsekk":900}, {"laptop":4000, "ryggsekk":600})) # -> 1300
+
+if __name__ == "__main__":
+    main()
+
+
+4)
+
+class Onske:
+    def __init__(self, beskrivelse, antall, minimumspris):
+        self._beskrivelse = beskrivelse
+        self._antall = antall
+        self._minimumspris = minimumspris
+
+    def passer(self, maksimumspris):
+        if self._antall == 0 or self._minimumspris > maksimumspris:
+            return False
+        return True
+
+    def valgt(self):
+        self._antall -= 1
+        return self._beskrivelse
+
+    def __str__(self):
+        return f"{self._beskrivelse} har en pris på {self._minimumspris} kr."
+
+class Onskeliste:
+    def __init__(self):
+        self._liste = []
+
+    def nytt_onske(self, beskrivelse, antall, minimumspris):
+        self._liste.append(Onske(beskrivelse, antall, minimumspris))
+
+    def hent_onsker(self, maksimumspris):
+        passende_onsker = []
+        for onske in self._liste:
+            if onske.passer(maksimumspris):
+                passende_onsker.append(str(onske))
+            else:
+                passende_onsker.append("Ikke valgbart onske")
+        return passende_onsker
+
+    def onske_oppfylles(self, valgt_onske_idx):
+        return self._liste[valgt_onske_idx].valgt()
+
+
+class Gave:
+    def __init__(self, beskrivelse, giver):
+        self._beskrivelse = beskrivelse
+        self._giver = giver
+
+    def skriv_gave(self):
+        return f"Giveren: {self._giver}, gir {self._beskrivelse}."
+
+
+class Juleferiekalender:
+    def __init__(self, ant_dager):
+        self._ant_dager = ant_dager
+        self._ordbok = {}
+        self._opprett_kalender(self._ant_dager)
+        self._dagnummer_i_dag = 25
+
+    def _opprett_kalender(self, ant_dager):
+        dagnr = 25
+
+        for i in range(ant_dager):
+            if dagnr <= 31:
+                self._ordbok[dagnr] = None
+                dagnr += 1
+            else:
+                dagnr = 1
+                self._ordbok[dagnr] = None
+                dagnr += 1
+
+    def ny_gave(self, beskrivelse, giver, dagnr):
+        self._ordbok[dagnr] = Gave(beskrivelse, giver)
+
+    def hent_dagens_gave(self, dagnummer):
+        if dagnummer not in self._ordbok:
+            return "Dagen ligger ikke i kalenderen."
+        if self._ordbok[dagnummer] is None:
+            return "Det ligger ingen gave på denne dagen."
+        if dagnummer in range(25, 32):
+            self._dagnummer_i_dag += 1
+            return f"{dagnummer}.desember: {self._ordbok[dagnummer].skriv_gave()}"
+
+        self._dagnummer_i_dag += 1
+        return f"{dagnummer}.januar: {self._ordbok[dagnummer].skriv_gave()}"
+
+    def hent_ant_dager(self):
+        return len(self._ordbok)
+
+    def gi_neste_dag_nummer(self):
+        if self._dagnummer_i_dag == 31:
+            return 1
+        return self._dagnummer_i_dag + 1
+
+
+
+class Julegavefikser:
+    def __init__(self, ant_dager):
+        self._ant_dager = ant_dager
+        self._juleferiekalender = Juleferiekalender(self._ant_dager)
+        self._onskeliste = Onskeliste()
+        self._neste_dag = self._juleferiekalender.gi_neste_dag_nummer()
+
+    def les_onsker_fra_fil(self, filnavn):
+        with open(filnavn, "r", encoding="utf-8") as fil:
+            for line in fil:
+                beskrivelse, antall, minimumspris = line.strip().split(";")
+                self._onskeliste.nytt_onske(beskrivelse, int(antall), int(minimumspris))
+
+    def velg_gave(self):
+        print("Velkommen til Julegavefiksereren!")
+        giver = input("Skriv inn ditt navn: ")
+        maksimumspris = int(input("Skriv din maks pris du kan gi gave for: "))
+        passende_onsker = self._onskeliste.hent_onsker(maksimumspris)
+        print(f"Her er dine passende ønsker for {maksimumspris} kr.")
+        for i in range(len(passende_onsker)):
+            print(f"{i+1}. {passende_onsker[i]}")
+        onske_index = int(input("Skriv inn nummer for onske du velger: ")) - 1
+        beskrivelsen = self._onskeliste.onske_oppfylles(onske_index)
+        dag_legges_i = int(input("Hvilken dag i kalenderen skal dette legges i?: "))
+        self._juleferiekalender.ny_gave(beskrivelsen, giver, dag_legges_i)
+
+    def ny_dag(self):
+        if self._neste_dag in range(25, 32) and self._ant_dager >= 7:
+            return self._juleferiekalender.hent_dagens_gave(self._neste_dag)
+
+        gjen_dager = self._ant_dager - 7
+        if self._neste_dag in range(1, gjen_dager + 1):
+            return self._juleferiekalender.hent_dagens_gave(self._neste_dag)
+
+        return "Dagen finnes ikke i kalenderen."
+
+
+5)
+
+def sjekk_reise(reise):
+    for i in range(len(reise) - 1):
+        reisemaal = reise[i][1]
+        destinasjon = reise[i + 1][0]
+
+        if reisemaal != destinasjon:
+            return False
+
+    return True
+
+
+
+def main():
+    sjekk_reise([["Spania", "Frankrike"], ["Frankrike", "Norge"]]) # True
+    sjekk_reise([["Russland", "Tyskland"], ["Tyskland", "Sverige"], ["Norge", "Belgia"]]) # False
+    sjekk_reise([["Russland", "Tyskland"], ["Norge", "Tyskland"]]) # False
+
+if __name__ == "__main__":
+    main()
