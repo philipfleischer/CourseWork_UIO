@@ -1,0 +1,27 @@
+3a)
+
+def fridager(julaften):
+    if julaften == "fredag":
+        return 2
+    elif julaften == "torsdag" or julaften == "lordag":
+        return 3
+    else:
+        return 4
+
+def main():
+    print(fridager("sondag")) # -> 4
+    print(fridager("fredag")) # -> 2
+
+if __name__ == "__main__":
+    main()
+
+
+3b)
+def beOmNavn(navneliste):
+    navn = input("Skriv inn navn: ")
+    while navn not in navneliste:
+        print("Navn ikke i navneliste, prøv igjen")
+        navn = input("Skriv inn navn: ")
+    return navn
+
+3c)
