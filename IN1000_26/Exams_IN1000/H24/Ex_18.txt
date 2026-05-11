@@ -1,0 +1,242 @@
+1a)
+3
+
+b)
+ad
+
+c)
+17
+
+d)
+9
+
+e)
+16
+
+f)
+22
+
+2a)
+49
+
+b)
+60
+
+c)
+49
+
+d)
+49
+
+3a)
+
+def vinnerlag(hjemmelag, bortelag, hjemmemaal, bortemaal):
+    if hjemmemaal == bortemaal:
+        return "uavgjort"
+    if hjemmemaal > bortemaal:
+        return hjemmelag
+    return bortelag
+
+def main():
+    print(vinnerlag("Brann", "Molde", 2, 3))    # "Molde"
+    print(vinnerlag("Brann", "Molde", 2, 2))    # "uavgjort"
+
+if __name__ == "__main__":
+    main()
+
+b)
+def forkort_lagliste(lagliste):
+    unike = set(lagliste)
+    return list(unike)
+
+def main():
+    print(forkort_lagliste(["Brann", "Molde", "Brann"])) # ["Brann", "Molde"]
+
+if __name__ == "__main__":
+    main()
+
+c)
+def legg_inn_null_maal(lagliste):
+    lag_bok = {}
+    for lag in lagliste:
+        lag_bok[lag] = 0
+    return lag_bok
+
+def main():
+    print(legg_inn_null_maal(["Brann", "Molde"])) # {"Brann" : 0, "Molde" : 0}
+
+if __name__ == "__main__":
+    main()
+
+d)
+def ekstraher_lagliste(fn):
+    lagnavn = []
+    with open(fn, "r", encoding="utf-8") as fil:
+        for linje in fil:
+            hjemmelag, bortelag, _, _ = linje.strip().split()
+            lagnavn.append(hjemmelag)
+            lagnavn.append(bortelag)
+    return lagnavn
+
+def main():
+    print(ekstraher_lagliste(filnavn))
+
+if __name__ == "__main__":
+    main()
+
+e)
+def regn_poengsum(fn):
+    lagnavn = ekstraher_lagliste(fn)
+    forkertet_liste = forkort_lagliste(lagnavn)
+    lag_bok_null = legg_inn_null_maal(forkertet_liste)
+
+    with open(fn, "r", encoding="utf-8) as fil:
+        for linje in fil:
+            hjemmelag, bortelag, hjemmemaal, bortemaal = linje.strip().split()
+            if hjemmemaal == bortemaal:
+                lag_bok_null[hjemmelag] += 1
+                lag_bok_null[bortelag] += 1
+            elif hjemmemaal > bortemaal:
+                lag_bok_null[hjemmelag] += 3
+            else:
+                lag_bok_null[bortelag] += 3
+    return lag_bok_null
+
+def main():
+    print(regn_poengsum(filnavn))
+
+if __name__ == "__main__":
+    main()
+
+f)
+def gull(lagoversikt):
+    max_lag = None
+    for lag, poeng in lagoversikt.items():
+        if max_lag is None:
+            max_lag = lag
+        if lagoversikt[max_lag] < poeng:
+            max_lag = lag
+    return max_lag
+
+def main():
+    print(gull({"Brann" : 2, "Molde" : 3})) # "Molde
+
+if __name__ == "__main__":
+    main()
+
+g)
+def finn_gull(fn):
+    lag_bok = regn_poengsum(fn)
+    gull_lag = gull(lag_bok)
+    print(f"Laget med flest poeng er {gull_lag} med {lag_bok[gull_lag]} poeng!")
+
+def main():
+    finn_gull(filnavn)
+
+if __name__ == "__main__":
+    main()
+
+
+
+4a)
+
+class Rett:
+    def __init__(self, navn, pris, innholdsstoffer):
+        self._navn = navn
+        self._pris = pris
+        self._innholdsstoffer = innholdsstoffer
+
+    def sjekkInnholdOK(self, innholds_liste):
+        for stoff in innholds_liste:
+            if stoff in self._innholdsstoffer:
+                return False
+        return True
+
+    def __str__(self):
+        utskrift = f"{self._navn} koster: {self._pris} og inneholder:\n"
+        for stoff in self._innholdsstoffer:
+            utskrift += f"  {stoff}\n"
+        return utskrift
+
+class Kategori:
+    def __init__(self, kategori_navn, retter):
+        self._kategori_navn = kategori_navn
+        self._retter = retter
+
+    def hentOkRetter(self, innholds_liste):
+        ok_liste = []
+        for rett in self._retter:
+            if rett.sjekkInnholdOK(innholds_liste):
+                ok_liste.append(rett)
+        return ok_liste
+
+    def hent_retter(self):
+        return self._retter
+
+    def __len__(self):
+        return len(self._retter)
+
+
+class Meny:
+    def __init__(self, kategori_navn):
+        self._menyen = {}
+        for kategori in kategori_navn:
+            filnavn = kategori + ".txt"
+            self._menyen[kategori] = self._lesKategoriFil(filnavn)
+
+    def hentRedusertMeny(self, innholds_liste):
+        redusert_meny = {}
+        for navn, kategori in self._menyen.items():
+            ok_kategori = Kategori(navn, kategori.hentOkRetter(innholds_liste))
+            if len(ok_kategori) > 0:
+                redusert_meny[navn] = ok_kategori
+        return redusert_meny
+
+
+class Kunde:
+    def __init__(self, telefon_nr, innholdsstoffer):
+        self._telefon_nr = telefon_nr
+        self._innholdsstoffer = innholdsstoffer
+
+    def velgRetter(self, meny):
+        valgte_retter_liste = []
+        redusert_meny = meny.hentRedusertMeny(self._innholdsstoffer)
+        print(f"Hei, person med tlf_nr: {self._telefon_nr}, her har du en skreddersydd meny:\n")
+        for navn, kategori in redusert_meny.items():
+            print(f"Kategori: {navn}: \n")
+            for rett in kategori.hent_retter():
+                print(rett)
+                print()
+            avslutt = False
+            while not avslutt:
+                valgt_rett = input("Velg en av rettene over ved å skrive navnet (enter for å hoppe over): ").lower()
+                if valgt_rett in kategori.hent_retter():
+                    valgte_retter_liste.append(valgt_rett)
+                    avslutt = True
+                elif valgt_rett == "":
+                    avslutt = True
+        return valgte_retter_liste
+
+    def riktig_tlf_nr(self, annet_tlf_nr):
+        return self._telefon_nr == annet_tlf_nr
+
+
+
+class TakeAway:
+    def __init__(self, kategori_navn_liste, kundefil_navn):
+        self._kategori_navn_liste = kategori_navn_liste
+        self._kundefil_navn = kundefil_navn
+        self._meny = Meny(kategori_navn_liste)
+        self._kunder = self._lesKundefil(kundefil_navn)
+
+    def betjen_kunde(self, tlf_nr):
+        for kunde in self._kunde:
+            if kunde.riktig_tlf_nr(tlf_nr):
+                valgte_retter = kunde.velgRetter(self._meny)
+                self._lagOgLeverMat(valgte_retter)
+
+    def _lagOgLeverMat(self, bestilling):
+        for rett in bestilling:
+            print(rett)
+
+def main():
