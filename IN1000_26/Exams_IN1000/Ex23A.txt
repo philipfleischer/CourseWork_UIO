@@ -1,0 +1,135 @@
+3a)
+
+def points(type):
+    if type == "lyn":
+        return 0
+    return len(type)
+
+def main():
+    print(points("lyn")) # 0
+    print(points("hjerte")) # 6
+
+if __name__ == "__main__":
+    main()
+
+3b)
+
+def poengsum(type_liste):
+    summen = -1
+    for type in type_liste:
+        summen += poeng(type)
+    return summen
+
+def main():
+    type_liste = ["Hjerte", "lyn"] # 6 + 0
+    print(poengsum(type_liste)) # 6
+
+if __name__ == "__main__":
+    main()
+
+3c)
+
+def velg(liste):
+    lengde = len(liste)
+    indeks = int(input("Skriv inn heltall: "))
+
+    while lengde < indeks or indeks < 0:
+        indeks = int(input("Skriv inn heltall: "))
+    return liste[indeks]
+
+def main():
+    pritn(velg([1,2,3,4]))
+
+if __name__ == "__main__":
+    main()
+
+3d)
+
+def spill_et_kort(kortliste):
+    kort_valgt = velg(kortliste)
+    summen = poengsum(kort_valgt)
+    print(f"Du fikk {summen} poeng!")
+
+def main():
+    kort1 = ["hjerter", "lyspære"]
+    kort2 = ["firkløver", "lyspære"]
+    kort3 = ["lyn", "lyn"]
+
+    kortliste = [kort1, kort2, kort3]
+    spill_et_kort(kortliste)
+
+if __name__ == "__main__":
+    main()
+
+
+4)
+
+class Plagg:
+    def __init__(self, farger):
+        self.farger = farger
+        self._ant_trekk_med_i = 0
+
+    def har_farge(self, farge):
+        return farge in self.farger
+
+    def hent_ant_antrekk(self):
+        return self._ant_trekk_med_i
+
+    def oppdater_ant_antrekk(self, antall):
+        self._ant_trekk_med_i += antall
+
+
+class Kategori:
+    def __init__(self, kategori_navn):
+        self.kategori_navn = kategori_navn
+        self.plagg_liste = []
+
+    def nytt_plagg(self, farger):
+        ny_plagg = Plagg(farger)
+        self.plagg_liste.append(ny_plagg)
+
+    def finn_plagg_med_farge(self, farge):
+        plagg_match = []
+        for plagg in self.plagg_liste:
+            if plagg.har_farge(farge):
+                plagg_match.append(plagg)
+        return plagg_match
+
+    def trekk_tilfeldig_plagg(self, farge):
+        plaggene = self.finn_plagg_med_farge(farge)
+        if len(plaggene) == 0:
+            return None
+        tilfeldig = random.randint(0, len(plaggene)-1)
+        return plaggene[tilfeldig]
+
+
+class Antrekk:
+    def __init__(self, plagg_liste, anledning_liste):
+        self.plagg_liste = plagg_liste
+        self.anledning_liste = anledning_liste
+        for plagg in self.plagg_liste:
+            plagg.oppdater_ant_antrekk(1)
+
+    def hent_plaggene(self):
+        return self.plagg_liste
+
+    def legg_til_anledning(self, anledning):
+        if anledning not in self.anledning_liste:
+            self.anledning_liste.append(anledning)
+
+    def passer_til(self, anledning):
+        return anledning in self.anledning_liste
+
+    def har_farge(self, farge):
+        for plagg in self.plagg_liste:
+            if plagg.har_farge(farge):
+                return True
+        return False
+
+
+class Garderobe:
+    def __init__(self):
+        self.kategori_bok = {}
+        self.antrekk_liste = []
+
+    def nytt_plagg(self)
