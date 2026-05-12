@@ -240,3 +240,29 @@ class TakeAway:
             print(rett)
 
 def main():
+    tk_tjeneste = TakeAway(["Forretter", "Hovedretter", "Desserter"], "Kunder.txt")
+    tlf_nr = int(input("Vennligst skriv inn tlf_nr (Enter for å avslutte): "))
+    while tlf_nr != "":
+        tk_tjeneste.betjen_kunde(tlf_nr)
+        tlf_nr = int(input("Vennligst skriv inn tlf_nr (Enter for å avslutte): "))
+
+
+5)
+def godkjenn(aldre):
+    alle_familier = True
+    for familie in aldre:
+        ant_myndig = 0
+        for a in familie:
+            if a > 18:
+                ant_myndig += 1
+        if ant_myndig = 0:
+            return False
+    return True
+
+
+def main():
+    print(gofkjenn[ [10,2,30], [20,1]]) # True
+    print(gofkjenn[ [10,2,30], [10,1]]) # False
+
+if __name__ == "__main__":
+    main()
