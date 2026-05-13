@@ -132,4 +132,39 @@ class Garderobe:
         self.kategori_bok = {}
         self.antrekk_liste = []
 
-    def nytt_plagg(self)
+    def nytt_plagg(self, kategorinavn, farger):
+        if kategorinavn not in self._kategori_ordbok:
+            self._kategori_ordbok[kategorinavn] = Kategori(kategorinavn)
+        self._kategori_ordbok[kategorinavn].nytt_plagg(farger)
+
+    def lag_nytt_antrekk(self, kategori_navn_liste, farge, anledning):
+        antrekk = self.finn_antrekk_til_anledning(kategori_navn_liste, farge)
+        passende = self.finn_antrekk_til_anledning(anledning)
+        nytt_antrekk = Antrekk(antrekk, passende)
+        self.antrekk_liste.append(antrekk)
+        return True
+
+    def finn_antrekk_til_anledning(self, anledning):
+        passende = []
+        for antrekk in self._antrekk_liste:
+            if antrekk.passer_til(anledning):
+                passende.append(antrekk)
+        return passende
+
+    def velg_første_antrekk(self, anledning, farge):
+        for antrekk in self._antrekk_liste:
+            if antrekk.passer_til(anledning) and antrekk.har_farge(farge):
+                return antrekk
+        return None
+
+    def finn_plagg_til_antrekk(self, kategorinavn_liste, farge):
+        valgte_plagg = []
+        for kategorinavn in kategorinavn_liste:
+            if kategorinavn not in self._kategori_ordbok:
+                return None                        # kategorien finnes ikke
+            kategori = self._kategori_ordbok[kategorinavn]
+            plagg = kategori.trekk_tilfeldig_plagg(farge)
+            if plagg is None:
+                return None          # kategorien mangler plagg med fargen
+            valgte_plagg.append(plagg)
+        return valgte_plagg
